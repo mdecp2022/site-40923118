@@ -1,5 +1,23 @@
 <h1>About</h1>
-<p>cmsite: use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p><h1>Brython</h1>
+<p><a href="https://gist.githubusercontent.com/40923118/4c4a24557fdd74b5877659133b512722/raw/4be044a0cbcb4f9658111ba5f81d3bd11f4bd661/password_generator.py">w5 password_generator</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入亂數模組
+import random
+# 導入字串模組
+import string
+# 利用 def 關鍵字定義函式
+# 函式的輸入變數可以設定初始值
+def password_generator(size=4, chars=string.ascii_lowercase + string.digits):
+    # 函式內以多行註解說明函式功能
+    """Generate random password
+    """
+    # 利用 return 關鍵字將所產生的亂數字串傳回
+    return ''.join(random.choice(chars) for _ in range(size))
+# 建立一個變數與隨後的字串對應
+pass_string = "abcdefghkmnpqrstuwxyz123456789"
+# 利用重複迴圈呼叫 password_generator() 函式 10 次
+for i in range(10):
+    print(password_generator(4, pass_string))</pre>
+<p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
