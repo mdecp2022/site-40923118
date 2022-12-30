@@ -520,13 +520,14 @@ document["btn1"].bind('click', get_input)
 <h2>w13</h2>
 <div>
 <pre><span class="cm-line"><span class="cm-string">f = c*9/5 + 32</span>
-</span><span class="cm-line"><span class="cm-string">c = (f-32)*5/9<br/><br/></span></span>溫度轉換成是範例1<br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/7e403bd4e865aec53327f22e44b475879d048f65/w13_temp_ex1.py">ex1</a><br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src2=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/b6cd4203e167167eb3e477f72569b4c053559827/w13_temp_ex2.py">ex2</a><br/><br/>心得: 待更新</pre>
-</div>
-<h2>w14</h2>
+</span><span class="cm-line"><span class="cm-string">c = (f-32)*5/9<br/><br/></span></span>溫度轉換成是範例1<br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/7e403bd4e865aec53327f22e44b475879d048f65/w13_temp_ex1.py">ex1</a><br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src2=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/b6cd4203e167167eb3e477f72569b4c053559827/w13_temp_ex2.py">ex2</a><br/><br/>心得: <br/>這週老師在上課時親自示範溫度轉換程式，雖然跟著做了，但是在w17時老師問了很多同學該如何寫1+到10/<br/>1+到100或是該如何利用溫度轉換程式改寫為英吋和公分轉換，當時聽到老師在問其他同學這個問題我自己發<br/>現雖然知道那是一樣的東西但是我也寫不出來，還好後來老師有示範，看完影片後才了解到開如何寫(任何)有<br/>關單位轉化的程式(此心得於w17補上)</pre>
+</div><h2>w14</h2>
+<p>心得:</p>
+<p>這週的作業只要將w10的作業複製並將w10考試結果網址換成w14的即可完成。</p>
 <div>
 <div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/84fa382535fef56df31c9adacf5aef42/raw/0deafbd57eeabc52da8519b565e0db45749682ea/cp2022_w14">w14缺考人員名單</a></div>
 <div></div>
-<h2>w15</h2>
+</div><h2>w15</h2>
 <p>心得:</p>
 <p></p>
 <p>w15 利用視覺暫留(透過html5 canvas) 做出動畫 經過反覆使用#(單行註解)嘗試寫程式後發現才原程式(h&gt;=&lt;n)為綠色格子重頭走到尾(ex右上到左上)，而(s 1:)是指每次走一格，剛開始還不了解程式，以為只要將s 1:改成s 1/2:綠色格子就能走到第8格(中間)後依照後面程式轉向，結果實際情況是移動速度變慢還脫出一排白色腳印，一直到後來詢問同學後才發現。完成這次作業後讓我對寫程式有更深的了解，和學習自己註解程式(使用#解釋該程式的意思或如何作用)的重要性。</p>
@@ -569,8 +570,193 @@ document["btn1"].bind('click', get_input)
 <p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/7e44ce6fe7fadeab7f112546f0c852da/raw/88fc160b6dd5450f2acb7bf540dda17f995d44ff/HW15">原程式</a></p>
 <p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/7e44ce6fe7fadeab7f112546f0c852da/raw/80e7a1261e2fe8c77bb7b6663c37c531cac4435c/After%2520the%2520update">更新後</a></p>
 <h2>w16</h2>
-<h2>w17</h2>
-<h1>cp2022</h1>
+<p>心得:</p>
+<p>這週作業比較簡單，只要在w15的程式裡面加入按鈕即可，但是因為當時網也出現衝突所以這次作業到w17才做完。(解決衝突的方法寫在w17)</p>
+<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/b31ff1db41b60bc97de50c374b97043f/raw/d4e167a8a72f120353d006361616f682dee62a1e/HW16">在w15作業中加入啟動和暫停按鈕</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 這個程式用於 demo 綠色方塊沿著特定網格路徑行走
+# 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc
+from browser import document as doc
+# 從 browser 模組導入 html 類別, 主要用於建立 CANVAS 標註物件, 並插入頁面中
+from browser import html
+# 用於定時執行特定函式
+import browser.timer
+# 導入亂數模組
+from random import random, randint
+
+# 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應
+canvas = html.CANVAS(width = 600, height = 600)
+# 將 canvas 標註的 id 設為 "canvas"
+canvas.id = "canvas"
+# 將 document 中 id 為 "brython_div" 的標註 
+# 設為與 brython_div 變數對應
+brython_div = doc["brython_div1"]
+
+# 建立 buttons
+brython_div &lt;= html.BUTTON("啟動", id="power")
+brython_div &lt;= html.BR()
+
+# 將 canvas 標註放入 brython_div1 所在位置
+# 頁面中原本就已經放入 &lt;div id="brython_div"&gt;&lt;/div&gt; 標註
+brython_div &lt;= canvas
+# 將頁面中 id 為 canvas 的 CANVAS 設為與 canvas 變數對應
+canvas = doc["canvas"]
+# 將 canvas 的 2d 繪圖 context 命名為 ctx
+ctx = canvas.getContext("2d")
+
+# 建立畫直線函式
+def draw_line(x1, y1, x2, y2, color="#ff0000"):
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.strokeStyle = color
+    ctx.stroke()
+
+# 建立 write Text 函式
+def wText(x, y, t, s=14, c='#0000ff'):
+    ctx.font = str(s) + "px Arial";
+    ctx.fillText(t, x, y)
+
+# 定義畫格線的函式
+def grid(startx, starty, w, h, wnum, hnum, pixel=1, color="#ff0000"):
+    # 利用迴圈與座標增量繪圖
+    # 因為輸入 wnum 與 hnum 為格子數, 畫格線數則需加上 1
+    for i in range(wnum+1):
+        for j in range(hnum+1):
+            # 畫上下直線
+            yend = starty + h*(hnum)
+            xend = startx + w*(wnum)
+            x = startx + i*w
+            draw_line(x, starty, x, yend, color)
+            # 畫左右直線
+            y = starty + j*h
+            draw_line(startx, y, xend, y, color)
+            #wText(w/2-10, y-w/2, str(j))
+
+# 從兩個座標點求中心點座標
+def center(lx, ly, rx, ry):
+    # lx is x coord of the left up corner
+    # rx is the x coord of th right down corner
+    x = (lx + rx)/2
+    y = (ly + ry)/2
+    return x, y
+    
+# 畫出填色方塊
+def draw_rect(gx, gy, gw, gh, color="lime"):
+    # gx is the grid coord at x direction
+    # gy is the grid coord at y direction
+    # gw is the with of the green rect
+    # gh is the height of the green rect
+    lx = origx + (gx-1)*w
+    ly = origy + (gy-1)*h
+    rx = origx + gx*w
+    ry = origy + gy*h
+    cx, cy = center(lx, ly, rx, ry)
+    # glx is the x coord of the left corner
+    # gly is the y coord of the left corner
+    glx = cx - gw/2
+    gly = cy - gh/2
+    # 利用設定的顏色值畫出 rectangle
+    ctx.fillStyle = color
+    ctx.fillRect(glx, gly, gw, gh)
+
+# 以白色覆蓋位於 (nowx, nowy) 
+# 且比目標方塊長寬各大於 1 pixel的方塊
+def wipe():
+    draw_rect(nowx, nowy, 30+1, 30+1, color="white")
+
+# 畫出位於 (nowx, nowy) 的綠色方塊
+def draw():
+    draw_rect(nowx, nowy, 30, 30, color="lime")
+
+# 更新後
+def walk():
+    global stepx, stepy
+# x軸向右為正，y軸向下為正
+# 當綠色方塊位於(1.1)時，x方向增量值為1，即向右移動
+    if nowy ==1 and nowx == 1:
+        stepx = 1
+        stepy = 0
+# 當綠色方塊走到(8.1)時，y方向增量值為1，即向下移動
+    elif nowx == 8 and nowy == 1:
+        stepx = 0
+        stepy = 1
+# 當綠色方塊走到(8.15)時，x方向增量值為1，即向右移動
+    if nowx ==8 and nowy == 15:
+        stepx = 1
+        stepy = 0
+# 當綠色方塊走到(15.15)時，y方向增量值為-1，即向上移動
+    elif nowy == 15 and nowx == 15:
+        stepx = 0
+        stepy = -1
+# 當綠色方塊走到(15.8)時，x方向增量值為-1，即向左移動
+    if nowy == 8 and nowx == 15:
+        stepx = -1
+        stepy = 0
+# 當綠色方塊走到(1.8)時，y方向增量值為-1，即向上移動
+    elif nowx == 1 and nowy == 8:
+        stepx = 0
+        stepy = -1
+# 每隔短暫時間即呼叫執行一次的函式
+def game():
+    # 因 nowx 與 nowy 在函式外宣告
+    # 且在函式內改變對應值, 因此需宣告為 global
+    global nowx, nowy
+    walk()
+    wipe()
+    nowx += stepx
+    nowy += stepy
+    draw()
+    
+    # 將 anim 設為 None
+anim = None
+ 
+def launchAnimation(ev):
+    global anim
+    # 初始啟動, anim 為 None
+    if anim is None:
+        # 每 0.08 秒執行一次 draw 函式繪圖
+        #anim = timer.set_interval(draw, 80)
+        anim = browser.timer.set_interval(game, 100)
+        # 初始啟動後, 按鈕文字轉為"暫停"
+        doc['power'].text = '暫停'
+    elif anim == 'hold':
+        # 當 anim 為 'hold' 表示曾經暫停後的啟動, 因此持續以 set_interval() 持續旋轉, 且將 power 文字轉為"暫停"
+        #anim = timer.set_interval(draw, 80)
+        anim = browser.timer.set_interval(game, 100)
+        doc['power'].text = '暫停'
+    else:
+        # 初始啟動後, 使用者再按 power, 此時 anim 非 None 也不是 'hold', 因此會執行 clear_interval() 暫停
+        # 且將 anim 變數設為 'hold', 且 power 文字轉為"繼續"
+        #timer.clear_interval(anim)
+        browser.timer.clear_interval(anim)
+        anim = 'hold'
+        doc['power'].text = '繼續'
+
+# 綠色方塊起點座標與 x 及 y 方向的座標增量
+nowx = 1
+nowy = 1
+stepx = 0
+stepy = 0
+# 設定格數
+# width 方向格子數
+wnum = 15
+# height 方向格子數
+hnum = 15
+# 設定線寬
+pixel = 1
+# 設定 w 寬度
+w = int(canvas.width/wnum) - pixel
+# 設定 h 高度
+h = int(canvas.height/hnum) - pixel
+# 設定繪圖座標點起點位置
+origx = 1
+origy = 1
+# 利用 grid 函式畫出格線
+grid(origx, origy, w, h, wnum, hnum, pixel=1, color="black")
+doc["power"].bind("click", launchAnimation)</pre>
+<p></p><h2>w17</h2>
+<p>心得(解決衝突):</p>
+<p>在上週我在進入要<strong>https://127.0.0.1:9443/</strong>時發現突然無法登入了，反而顯示了"<em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>."，當時想說因該是因為我當時隨身碟和筆電的版本不同(當時隨身碟版本較新)，只要<strong>git pull</strong>(將遠端的新版本拉下來合併)就可以了，結果系統提示我使用<strong>git push</strong>(當遠端版本較舊時將近端推到遠端已跟新遠端版本)，結果發現打完2個指令還是不能利用cms的指令進入<strong>https://127.0.0.1:9443/</strong>，後來查了一下開如何解決，雖然也有人顯示<span>"</span><span><em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>.</span>"但是還是沒辦法解決，這這樣到下課了，到今天我上台和老師講解我這學期做了什麼的時候老師問了我一句:你知道你衝突還沒解決嗎?我才知道原來那個是發生衝突，後來詢問老之，老師幫我下載了一個可以辨別不同處的軟體(在<strong>KDiff3</strong>中匯入<span>content_backup</span>和<span>content_backup</span>後此軟體會自動分析出這2個資料程式碼的不同處-即為衝突點)，後來老師先幫我將有衝突的和沒衝突的都備份了一份，然後利用沒有衝突可以執行的那一份進入https://127.0.0.1:9443/(簡單來說就是將複製的content_backup改成content，並把原本有衝突的content刪除這樣只會剩下content-複製和content_backup和由content_backup改名成的content這時就可以正常進https://127.0.0.1:9443/) 之後告訴我將那份有衝突的資料(<span>content-複製</span>)拉入<strong>Untitled</strong>然後再去改[雖然可以利用Search(收尋)收尋到======(我也不知道為什們是6個等號可能是有衝突的地方就會有巴)然後直接找出衝突並修正，但這樣可能會刪到一些表面上看不到的程式碼，所以我是利用KDiff3找出所有衝突點，再到<strong>Untitled</strong>找到對應位置並進行修正(也不知道可不可以直接複製貼上)，之後才成功解決衝突?(我不知道還有沒有其他衝突)]，最後提醒有看到此文的同學，如果有發生問題，問同學或上網查都可以，但是如果還是不行那就趕快去問老師吧。</p><h1>cp2022</h1>
 <p><a href="https://mdecp2022.github.io/site-40923118/content/cp2022.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/dc2d7cbfa49a7b02e28ae9b1cd31adfd6fd9bb3f/random_draw_1a.py&amp;
 src2=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/ad87258d056918e4dfe993b2e32f34e66c816c71/list_1a_static_site.py">w6 test</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
@@ -1146,4 +1332,4 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <p><span><!-- editor2 結束 --></span></p>
-<hr/></div>
+<hr/>
