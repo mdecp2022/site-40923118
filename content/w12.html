@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w6.html'>w6</a><li><a href='Guide to Brython H1.html'>Guide to Brython H1</a><li class='has-children'><a href='hw.html'>hw</a><ul class='dropdown'><li class='has-children'><a href='w10.html'>w10</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a></li></ul><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w14.html'>w14</a><li><a href='w15.html'>w15</a></li></ul><li><a href='cp2022.html'>cp2022</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w6.html'>w6</a><li><a href='Guide to Brython H1.html'>Guide to Brython H1</a><li class='has-children'><a href='hw.html'>hw</a><ul class='dropdown'><li class='has-children'><a href='w10.html'>w10</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a></li></ul><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w14.html'>w14</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='w17.html'>w17</a></li></ul><li><a href='cp2022.html'>cp2022</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -161,25 +161,19 @@ print(c, c*9/5 +32)</pre>
 </li>
 <li></li>
 </ol>
-<!-- 
-在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
--->
+<p><span><!-- >
 <script src="./../cmsimde/static/brython.js"></script>
 <script src="./../cmsimde/static/brython_stdlib.js"></script>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <!-- 啟動 Brython -->
-<p>
 <script>
 window.onload=function(){
 brython({debug:1, pythonpath:['./../cmsimde/static/','/downloads/py/']});
 }
 </script>
-<!-- 以下事先在頁面中加入 id="brython_div" 的 div 標註
-之後可利用 Brython 的 document 模組與此 html 標註對應
---></p>
-<!-- 利用 html 建立一個 id="btn1" 的按鈕 -->
-<p><button id="btn1">取使用者輸入</button></p>
-<<<<<<< HEAD
-=======
+</span></p>
+<p><span><!-- 利用 html 建立一個 id="btn1" 的按鈕 --></span></p>
+<p></p>
 <p></p>
 <p>老師提出了4個問題</p>
 <div>
@@ -192,7 +186,6 @@ brython({debug:1, pythonpath:['./../cmsimde/static/','/downloads/py/']});
 <p>心得:</p>
 <p>    </p>
 </div>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <div id="brython_div"></div>
 <p>
 <script type="text/python">
@@ -218,7 +211,8 @@ def get_input(env):
 # 讓使用者 click 後會經由瀏覽器中的 event 通知執行 get_input 函式
 document["btn1"].bind('click', get_input)
 </script>
-</p><br />HW2 << <a href='HW2.html'>Previous</a> <a href='w13.html'>Next</a> >> w13</div>
+</p>
+<br />HW2 << <a href='HW2.html'>Previous</a> <a href='w13.html'>Next</a> >> w13</div>
         
     <!-- footer -->
       <div class="container">

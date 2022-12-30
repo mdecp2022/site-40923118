@@ -2,7 +2,7 @@
         <head>
         <title>cp2022-40923118</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,33 +141,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <a href='Guide to Brython H1.html'>Next</a> >> Guide to Brython H1<br /><h1>w6</h1>
-<p>心得</p>
-<p>雖然上課的時候跟不上老師的進度，不過多看幾次recordings中的影片，至少還做得出來，雖然w6的作業我拖到w14時才完成，但經過反覆瀏覽影片最後我看懂了一些程式所做的指令像是多行註解(""")、單行註解(#)，也知道要如何切割、分頁、如何置入超文件。</p>
-<p></p>
-<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/5973366e0e5fe7ed76e21fefc92ea13694c739fc/list_1a_static_site.py+random_draw_1a.py">隨機抽取5位同學的個人網站</a></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
-import random
-
-brython_div1 = document["brython_div1"]
-
-url = "https://mde.tw/studlist/2022fall/1a.txt"
-data = open(url).read().split("\n")
-mdecp2022 = "https://mdecp2022.github.io/site-"
-data = data[1:-1]
-random.shuffle(data)
-for i in data[:5]:
-    stud = i.split("\t")
-    stud_num = stud[0]
-    github_acc = stud[1]
-    #print(stud_num, github_acc)
-    if github_acc == "":
-        github_acc = stud_num
-    site = mdecp2022 + github_acc
-    link = html.A(stud_num, href=site)
-    brython_div1 &lt;= link
-    brython_div1 &lt;= html.BR()</pre>
-<p></p><br />About << <a href='About.html'>Previous</a> <a href='Guide to Brython H1.html'>Next</a> >> Guide to Brython H1</div>
+    <div id="tipue_search_content">w16 << <a href='w16.html'>Previous</a> <a href='cp2022.html'>Next</a> >> cp2022<br /><h1>w17</h1>
+<br />w16 << <a href='w16.html'>Previous</a> <a href='cp2022.html'>Next</a> >> cp2022</div>
         
     <!-- footer -->
       <div class="container">

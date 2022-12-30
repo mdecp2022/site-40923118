@@ -17,7 +17,7 @@ pass_string = "abcdefghkmnpqrstuwxyz123456789"
 # 利用重複迴圈呼叫 password_generator() 函式 10 次
 for i in range(10):
     print(password_generator(4, pass_string))</pre>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<p></p>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule</p>
 <p><a href="https://github.com/mdecp2022/site-40923118">個人倉儲連結</a></p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
@@ -25,19 +25,50 @@ for i in range(10):
 <p>心得</p>
 <p>雖然上課的時候跟不上老師的進度，不過多看幾次recordings中的影片，至少還做得出來，雖然w6的作業我拖到w14時才完成，但經過反覆瀏覽影片最後我看懂了一些程式所做的指令像是多行註解(""")、單行註解(#)，也知道要如何切割、分頁、如何置入超文件。</p>
 <p></p>
-<<<<<<< HEAD
 <p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/5973366e0e5fe7ed76e21fefc92ea13694c739fc/list_1a_static_site.py+random_draw_1a.py">隨機抽取5位同學的個人網站</a></p>
-=======
-<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/5973366e0e5fe7ed76e21fefc92ea13694c739fc/list_1a_static_site.py+random_draw_1a.py"><span>隨機抽取5位同學的個人網站</span></a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
+import random
+
+brython_div1 = document["brython_div1"]
+
+url = "https://mde.tw/studlist/2022fall/1a.txt"
+data = open(url).read().split("\n")
+mdecp2022 = "https://mdecp2022.github.io/site-"
+data = data[1:-1]
+random.shuffle(data)
+for i in data[:5]:
+    stud = i.split("\t")
+    stud_num = stud[0]
+    github_acc = stud[1]
+    #print(stud_num, github_acc)
+    if github_acc == "":
+        github_acc = stud_num
+    site = mdecp2022 + github_acc
+    link = html.A(stud_num, href=site)
+    brython_div1 &lt;= link
+    brython_div1 &lt;= html.BR()</pre>
+<p></p><h1>Guide to Brython H1</h1>
+<div>請閱讀<a href="https://stackabuse.com/an-introductory-guide-to-brython/">此文</a>並整理文章重點</div>
+<div>雖然老師希望我們盡可能的不要使用google翻譯但是內容太多了</div>
+<div>以下為重點整理</div>
+<div></div>
+<div>Brython介紹<br/>在開發Web時我們會使用多種技術和語言。後端可以用Java（Spring Boot），Python（Django或Flask）或JavaScript（Node.js）構建，前端則常用JavaScript（React，Angular等）完成。有時會用混合方法，讓伺服器端渲染頁面，在前端框架中完成最終的修飾。<br/>近年來JavaScript擴展了原始功能，以支援JavaScript驅動的後端和前端。用JavaScript編寫Web最常見方法是使用MEAN堆疊。一個MongoDB資料庫，Node.js帶有Express.js用於後端，Angular（或React）用於前端。<br/>但如果要使用Python開發你的應用程式呢？雖然嚴格專注於一種程式設計語言是不可取的(語言是工具)，專注於一種工具會讓你不那麼靈活-但單語言應用程式仍有空間。<br/>Brython可能是解決方案！它是JavaScript庫，能在瀏覽器中運行Python代碼。(Brython代表Browser Python)<br/>Brython的主要目標是取代JavaScript，並將Python作為Web的主角<br/>本語言，用於您的應用程式：<br/><br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;script type="text/python"&gt;<br/> import browser<br/> browser.document &lt;= "Hello world!"<br/> &lt;/script&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/><br/><br/>通常不支援的類型可以解釋我們編寫的Python代碼。我們列印了Hello World消息，類似JavaScript消息。&lt;script&gt;text/pythonbrowser.documentdocument<br/>在Brython介紹-可了解如何安裝、初始化、設置頁面樣式Brython，並和一些替代方案進行比較<br/><br/>安裝Brython<br/>安裝Brython的最方便的方法可能是不安裝它。如果不需要將其本地安裝到PC上，只需要在靜態網頁上載入即可向頁面添加一些動態功能，則應考慮簡單地導入外部資源。<br/>在HTML頁面的部分載入庫。這樣用戶端將在PC上載入HTML頁面的同時下載庫。<br/>為了實現，我們將從一些託管最新穩定版本的Brython在線的CDN（內容交付網路）載入我們的庫。<br/>內容交付網路是一組託管某些數據（代碼、影片內容、圖像等）的分散式伺服器。這類型的網路很可靠，幾乎沒有停機時間。使它們成為託管代碼庫的理想選擇。<br/><br/>有幾個CDN可供選擇，三個常用：<br/><br/>&lt;!-- Option 1 : jsDelivr CDN --&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.9.1/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.9.1/brython_stdlib.js"&gt;&lt;/script&gt;<br/><br/>&lt;!-- Option 2: CloudFlare CDN --&gt;<br/>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython_stdlib.min.js"&gt;&lt;/script&gt;<br/><br/>&lt;!-- Option 3: GitHub as the CDN --&gt;<br/>&lt;!-- Choose this option if you want to use the latest developement version --&gt;<br/>&lt;script src="https://raw.githack.com/brython-dev/brython/master/www/src/brython.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://raw.githack.com/brython-dev/brython/master/www/src/brython_stdlib.js"&gt;&lt;/script&gt;<br/><br/>通過Pip安裝Brython。<br/>想讓Brython有更靈活性，可以安裝它：<br/>$ pip3 install brython<br/>pip將在電腦上下載並安裝。<br/><br/>驗證Brython是否成功安裝：<br/>$ pip show brython <br/>這將列印出版本，和Brython軟體包的一些基本資訊：<br/>Name: brython<br/>Version: 3.9.2<br/>Summary: Brython is an implementation of Python 3 running in the browser<br/>Home-page: http://brython.info<br/>Author: Pierre Quentel<br/>Author-email: quentel.pierre@orange.fr<br/><br/>License: BSD<br/><br/>初始化Brython專案<br/>安裝Brython後，下一步是創建一個簡單的項目來測試功能。要建立專案，請創建新資料夾並移入其中：<br/>$ mkdir brython-project<br/>$ cd brython-project<br/>執行以下命令來初始化Brython專案：<br/>$ brython-cli --install<br/>建立並初始化Brython專案，包括起始專案目錄和檔案層次結構：<br/>brython-project<br/> | brython.js<br/> | brython_stdlib.js<br/> | demo.html<br/> | index.html<br/> | README.md<br/> | unicode.txt<br/><br/>這些檔的用途：<br/>brython.js- Brython核心引擎，包括最常用的模組，如果我們選擇不在本地安裝Brython，則使用此標籤將此檔包含在HTML頁面中。browserbrowser.htmljavascript&lt;script&gt;<br/>brython_stdlib.js- 由Brython支援的Python標準庫中的所有包和模組組成。<br/>demo.html- 運行Brython的簡單HTML頁面，展示了一些有趣的用例和我們如何利用Brython修改靜態HTML頁面的示例。<br/>index.html- 一個簡單的HTML頁面。Hello World<br/><br/>若簡單的將Web瀏覽器打開，則有其局限性，故建議先啟動本地主機伺服器。<br/>安裝后，我們可以啟動伺服器：<br/>$ python3 -m http.server<br/>在（預設）上啟動本地主機，並且您應該能夠通過導航到所選Web瀏覽器的位址欄來訪問該頁面。port 8000demo.htmlhttp://localhost:8000/demo.htmlhttp://0.0.0.0:8000/demo.html<br/>如果埠 8000 當前由其他進程使用，則必須定義要使用的另一個埠（例如 8080）：<br/><br/>$ python3 -m http.server 8080<br/>要創建能夠運行Python的新HTML頁面，需要在檔部分中導入theandfiles。然後繼續在HTML檔本身中編寫Python：brython.jsbrython_stdlib.jshead<br/>&lt;script src="brython.js"&gt;&lt;/script&gt;<br/>&lt;script src="brython_stdlib.js.js"&gt;&lt;/script&gt;<br/><br/>Brython運作<br/>Brython 使我們能夠通過將Python代碼轉換為JavaScript在瀏覽器中編寫和運行Python代碼。這段代碼將能在所有支援JavaScript的瀏覽器中運行，因為Brython故意避免使用新的、不受支援的語法生成JavaScript。<br/>可將轉譯視為編譯子集。<br/>編譯過程通常用高級程式設計語言（例如C）編寫的原始程式碼轉換為較低級別的語言（例如機器代碼）。<br/>轉譯是將高級語言轉換為另一種高級語言（例如Python到JavaScript）。<br/><br/>Brython中的轉譯發生在載入HTML頁面的同時。用HTML文件標籤中的函數：brython()body<br/>&lt;body onload="brython()"&gt;<br/>該函數執行寫在HTML文件標籤中的Python代碼的轉譯。所有Python代碼須用標籤括起來：brython()&lt;script type="text/python"&gt; &lt;script type="text/python"&gt;<br/>&lt;script type="text/python"&gt;<br/> &lt;!-- Python code --&gt;<br/>&lt;/script&gt;<br/>或者，使用以下命令將其載入到HTML文件中來包含外部Python代碼：<br/>&lt;script type="text/python" src="test.py"&gt;&lt;/script&gt;<br/>所有Web瀏覽器都支援JavaScript作為主要語言，但不支援Python。因此，所有 Python 代碼都需轉換為 JavaScript，然後在載入 HTML 頁面所需的時間內運行。<br/>該函數通過檢查所有具有 of 類型的腳本來搜索 HTML 頁面中的所有 Python 代碼，然後將所有代碼轉換為 JavaScript：brython()text/python<br/>此轉換的結果是 JavaScript 代碼的簡單字串表示。該字串必須在瀏覽器中作為 JavaScript 代碼運行。<br/>Brython 使用 JavaScriptfunction 來運行所有翻譯後的代碼。它可以使用 JavaScript 命令在某些瀏覽器上執行代碼。eval()new Function(function_name, source)(module)<br/>這不是運行 JavaScript 的首選方式。可能是危險的，因為它可能會將應用程式暴露給潛在的惡意第三方代碼。與替代方案相比，速度慢。eval()eval()<br/>如果 Python 代碼通過 HTML 文件載入，Brython 將執行 Ajax 調用以獲取載入檔的內容。該代碼被轉換為JavaScript，並以與上述相同的方式執行。&lt;script type="text/python" src="url"&gt;<br/><br/>與Brython合作 - 示例<br/>回顧幾個例子，以便瞭解 Brython 的工作原理及功能：<br/>世界您好<br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;script type="text/python"&gt;<br/> import browser<br/> browser.document &lt;= "Hello world!"<br/> &lt;/script&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>我們將專注於標籤之間的 Python 代碼：&lt;script type="text/python"&gt;&lt;/script&gt;<br/><br/>import browser將包載入到腳本中。它是將所有Brython特定的名稱和模組分組的包，主要用於表示JavaScript中使用的DOM元素和事件。browser<br/>browser.document是表示當前顯示的 HTML 文件的物件。<br/>browser.document &lt;= "Hello world!"- 我們使用符號而不是“接收”包含字串的新元素。另一種方法是使用以下語法：&lt;==documentHello world!browser.document.attach("Hello world!")<br/>在用戶端，一旦呈現此代碼 - 它會導致：<br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> Hello world!<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>添加元素和屬性<br/>修改示例，並添加一些段落和文本格式。該介面提供了模組，它公開了 HTML 標籤，可以用這些標籤從 Python 代碼動態創建 HTML 結構。建立物件的語法為：browserhtml<br/>browser.html.TAG("content", [attributes])<br/><br/>哪些輸出：<br/>&lt;TAG [attributes]&gt;content&lt;/TAG&gt;<br/>browser.html.H2("Hello world!")用標籤包裝字串。Hello world&lt;h2&gt;<br/>browser.html.A("link", href="stackabuse.com")創建安塔格。&lt;a href="stackabuse.com"&gt;<br/>可以進行嵌套，只需在另一個元素中包含 an即可。讓我們在頁面中添加一些元素：html.element<br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;script type="text/python"&gt;<br/> import browser<br/> <br/> title = browser.html.H2("Hello world!")<br/><br/> bold = browser.html.B("bold text")<br/> url = browser.html.A("link", href="stackabuse.com")<br/> paragraph = browser.html.P("This is a paragraph. This is " + bold + ", and this is a " + url)<br/><br/> browser.document &lt;= title<br/> browser.document &lt;= paragraph <br/> &lt;/script&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>可以創建沒有參數的物件並構建它，而不是使用這樣的參數創建物件： url = browser.html.A("link", href="stackabuse.com")<br/><br/># Creating an &lt;a&gt;&lt;/a&gt; tag<br/>url = browser.html.A()<br/><br/># Adding content between created tags<br/># &lt;a&gt;Url Text&lt;/a&gt;<br/>url &lt;= "Url Text"<br/># Adding href attribute<br/># &lt;a href="stackabuse.com"&gt;Url Text&lt;/a&gt;<br/>url.href = "stackabuse.com"<br/>完成 Python 代碼並打開頁面時 - 生成的 HTML 頁面應如下所示：<br/><br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;h2&gt;Hello world!&lt;/h2&gt;<br/> &lt;p&gt;<br/> This is a paragraph. This is &lt;b&gt;bold text&lt;/b&gt;, and this is a <br/> &lt;a href="stackabuse.com"&gt;link&lt;/a&gt;.<br/> &lt;/p&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>我們有aelement，在其中我們使用aandelement，事先構建。&lt;p&gt;&lt;b&gt;&lt;a&gt;<br/><br/>使用 Brython 建立表<br/>可以用一直應用的大致相同的邏輯創建表：table = browser.html.TABLE()<br/>創建幾行包含一些模擬資料並將它們添加到：table<br/><br/># Creating the row<br/>row = browser.html.TR()<br/># Adding header cells<br/>row &lt;= browser.html.TH("Header1")<br/>row &lt;= browser.html.TH("Header2")<br/># Appending the row to the table<br/>table &lt;= row<br/><br/># Adding a first row<br/>row = browser.html.TR()<br/>row &lt;= browser.html.TD("Data 1")<br/>row &lt;= browser.html.TD("Data 2")<br/>table &lt;= row<br/>最後選擇在 HTML 頁面上創建的 bankelement 中顯示表：&lt;div id="table-zone"&gt;<br/><br/>tableZone = browser.document["table-zone"] <br/>tableZone &lt;= table<br/>導致我們頁面上的 HTML 表格：<br/><br/>&lt;div id="table-zone"&gt;<br/> &lt;table&gt;<br/> &lt;thead&gt;<br/> &lt;tr&gt;<br/> &lt;th&gt;Header 1&lt;/th&gt;<br/> &lt;th&gt;Header 2&lt;/th&gt;<br/> &lt;/tr&gt;<br/> &lt;/thead&gt;<br/> &lt;tbody&gt;<br/> &lt;tr&gt;<br/> &lt;td&gt;Data 1&lt;/td&gt;<br/> &lt;td&gt;Data 2&lt;/td&gt;<br/> &lt;/tr&gt;<br/> &lt;/tbody&gt;<br/> &lt;/table&gt;<br/>&lt;/div&gt;<br/>向現有元素添加樣式<br/>為元素添加一些樣式：&lt;div id="table-zone"&gt;table<br/><br/>tableZone.style = {<br/> "background-color": "#dedfdd",<br/> "width": "50%",<br/> "min-height": "100px",<br/> "margin": "auto"<br/> }<br/> <br/>table.style = {<br/> "border": "1px solid #333",<br/> "margin": "auto"<br/> }<br/>這將導致修改的 HTML 標記，並添加屬性：style<br/><br/>&lt;div id="table-zone" style="background-color: rgb(222, 223, 221); width: 50%; min-height: 100px; margin: auto;"&gt;<br/> <br/>&lt;table style="border: 1px solid rgb(51, 51, 51); margin: auto;"&gt;<br/>綁定操作和從元素讀取內容<br/>網頁可用於顯示數據和捕獲數據。表單是提示使用者發送數據的方式之一。<br/>在Brython中創建一個表單，使用函數和HTML元素，如and：FORM()INPUT()LABEL()<br/><br/># Create a &lt;div id="form-div"&gt; element as a container for a new form<br/>formDiv = browser.html.DIV(id="form-div")<br/># Create a &lt;form&gt; element <br/>form = browser.html.FORM()<br/><br/># Create the &lt;input type="text"&gt; field wit the label and add it to the form<br/>input = browser.html.INPUT()<br/>input.type = "text"<br/>input.id = "input-name"<br/># Add label and to the form<br/>form &lt;= browser.html.LABEL("Enter your name: ") + input<br/><br/># Create the submit button and add it to the form<br/>button = browser.html.INPUT()<br/>button.type = "button"<br/>button.value = "Submit"<br/>button.id = "submit-button"<br/>form &lt;= button<br/><br/># Add form to the container &lt;div&gt; element<br/>formDiv &lt;= form<br/># Add the &lt;h4 id="form-response"&gt; to show the value from the form<br/>formDiv &lt;= browser.html.H4("Your name is: ", id="form-response")<br/># Display the div element containing form on the page<br/>browser.document &lt;= formDiv<br/>不執行任何操作的表單不是很有用。在 Brython 中使用自定義函數。創建一個名為 uponing the button 的 Python 函數。它將提醒使用者按鈕已被按下並更新元素的值：clicksubmit&lt;h4 id="form-response"&gt;<br/><br/>def onSubmit(ev):<br/> # Get the value of the &lt;input id="input-name"&gt; field<br/> name = browser.document["input-name"].value<br/> # Append the stored value to the content in the &lt;h4 id="form-response"&gt; tag<br/> browser.document["form-response"] &lt;= name<br/> # Alert the user that the button has been clicked<br/> browser.alert("The Submit Button is Clicked") <br/>將事件與創建的函數綁定，以便在按下按鈕時獲得所需的行為：clicksubmit-buttononSubmit()<br/><br/>browser.document["submit-button"].bind("click", onSubmit)<br/><br/>Brython與替代品相比<br/>除了Brython之外，還有其他決方案可以在Web瀏覽器中運行Python代碼<br/><br/>系統 編譯時間 運行機制<br/>布萊頓 頁面載入時 將 Python 轉換為 JavaScript<br/>轉譯 超前 將 Python 轉換為 JavaScript<br/>巴達維亞 超前 瀏覽器中的 Python 運行時<br/>斯庫爾普特 頁面載入後 將 Python 轉換為 JavaScript<br/>派皮.js 頁面載入後 瀏覽器中的 Python 運行時<br/>吡啶 頁面載入後 瀏覽器中的 Python 運行時<br/>其中一些傾向於完全取代JavaScript，另一些只是為Web瀏覽器創建一個有用的Python環境，作為JavaScript的可能替代品。一些解決方案正在將Python代碼轉換為JavaScript，如Brython，Skulpt和Transcrypt。<br/>就編譯時間而言，它是在載入 HTML 文件之前、之後或載入時執行的。<br/>Python代碼執行速度進行基準測試時，Brython處於更快的一端。提前將 Python 編譯（轉譯）為 JavaScript 的解決方案與包含翻譯代碼的大檔之間進行折衷，客戶端必須（向下）載入這些檔才能以“提前”方法運行腳本。<br/><br/>Brytho非常接近那個甜蜜點。<br/>基準測試顯然不能總是代表現實世界的情況，因為結果可能因執行的代碼而異，但它們可以在不同解決方案的性能之間提供很好的比較。<br/><br/>注意：Brython 比只對相同的代碼使用 JavaScript 慢。因為增加了轉譯步驟，它不會完全是0ms，之後運行JavaScript代碼。<br/><br/>結論<br/>如果你正在尋找JavaScript作為Web腳本語言的替代品，並且不太關心性能，那麼Brython可能是一個很好的解決方案。<br/>它在執行速度和載入庫所需的多餘記憶體使用之間不可避免的權衡的平衡方法使其成為在瀏覽器中運行 Python 的最佳性能解決方案之一。<br/><br/>Brython沒有龐大的社區和廣泛地使用。學習資源有限，局限於官方文檔，而沒有大型專案可以尋求指導。<br/><br/>是否值得取代JavaScript。即使是小規模的 Brython 專案，與用 JavaScript 編寫的完全相同的專案相比，執行速度也會慢 2 倍。JavaScript擁有龐大的開發人員社區，大量資源和現實世界的專案<br/><br/>JavaScript框架，是JavaScript流行的支柱。如果沒有他們的説明，JavaScript 只是另一種腳本語言，它為我們提供了動態更改靜態 HTML 頁面內容的能力。例如純JavaScript編寫複雜的伺服器端邏輯。即使可行，也不會是一次愉快的經歷。<br/><br/>Brython沒有為它開發的框架，只能使用純Python代碼，這對於簡單的用例之外的任何事情都是不合理的。無法像使用 JavaScript 和 Angular 那樣使用 Brython 創建一些複雜的單頁 Web 應用程式。對於只想使用Python進行伺服器端和用戶端程式設計來說，Brython是一個很好的工具，但還無法取代JavaScript</div>
+<div></div>
 <p></p>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
-<p><button id="add1to100">隨機抽取5位同學的個人網站</button></p>
-<!-- 導入 brython 程式庫 -->
+<h1>hw</h1>
+<h2>w10</h2>
+<p>心得:</p>
+<p><span>w10 將a班缺考人員程式和a班考試成績程式結合，這次的作業相對簡單，只要將老師給的2個程式並在一起在稍加修改即可，但這次缺考和考0分都顯示0分所以讓我意識到其實如果上課還繼續玩手機看漫畫回家還不看老師錄製的影片，考試時才到該影片或該週內容查看的話其實頂多答2-3題時間就到了而且該題要得到分數的話該題的所有小題都要答對。</span></p>
+<h3>HW1</h3>
+<div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/4b9c778c87c5a4d7cd585da5fbba737e/raw/3a0260a69e74726d4584b4b36752e053a7d1386b/HW10-1-1"> 1a缺考人員學號</a></div>
+<p><button id="add1to100"><span>1a缺考人員學號</span></button></p>
+<p></p>
+<p><span><!-- 導入 brython 程式庫 --></span></p>
 <p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
 </p>
-<!-- 啟動 Brython -->
+<p><span><!-- 啟動 Brython --></span></p>
 <p>
 <script>
 window.onload=function(){
@@ -56,155 +87,6 @@ brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 <script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
 <script src="/static/ace/mode-python3.js" type="text/javascript"></script>
 <script src="/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
-<script src="/static/Cango-24v03-min.js"></script>
-<script src="/static/gearUtils-09.js"></script>
-<script src="/static/SVGpathUtils-6v03-min.js"></script>
-<script src="/static/sylvester.js"></script>
-<script src="/static/PrairieDraw.js"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run1():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src"]
-    except:
-        url = "https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/5973366e0e5fe7ed76e21fefc92ea13694c739fc/list_1a_static_site.py+random_draw_1a.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace1.editor.setValue(prog)
-    Ace1.editor.scrollToRow(0)
-    Ace1.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace1.run()
-
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run1'].bind('click', Ace1.run)
-doc['kw_show_console1'].bind('click', Ace1.show_console)
-doc['kw_clear_console1'].bind('click', Ace1.clear_console)
-doc['clear_bd1'].bind('click', clear_bd1)
-# 呼叫函式執行
-run1()
-</script>
-</p>
-<p><!-- list_1a_static_site.py+random_draw_1a -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-
-# 從 gist 取得程式碼
-add_src = open(list_1a_static_site.py+random_draw_1a).read()
-def add(ev):
-    Ace2.editor.setValue(add_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "list_1a_static_site.py+random_draw_1a" 的按鈕點按時, 執行 add 方法
-doc["add1to100"].bind('click', add)
-</script>
-</p>
-<p><!-- list_1a_static_site.py+random_draw_1a結束--></p>
-<!-- editor1 開始 -->
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div1"></div>
-<!-- editor1 結束 -->
-<div style="width: 100%; height: 100%;"></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div2"></div>
-<!-- editor2 結束 --><hr/><h1>Guide to Brython H1</h1>
-<div>請閱讀<a href="https://stackabuse.com/an-introductory-guide-to-brython/">此文</a>並整理文章重點</div>
-<div>雖然老師希望我們盡可能的不要使用google翻譯但是內容太多了</div>
-<div>以下為重點整理</div>
-<div></div>
-<div>Brython介紹<br/>在開發Web時我們會使用多種技術和語言。後端可以用Java（Spring Boot），Python（Django或Flask）或JavaScript（Node.js）構建，前端則常用JavaScript（React，Angular等）完成。有時會用混合方法，讓伺服器端渲染頁面，在前端框架中完成最終的修飾。<br/>近年來JavaScript擴展了原始功能，以支援JavaScript驅動的後端和前端。用JavaScript編寫Web最常見方法是使用MEAN堆疊。一個MongoDB資料庫，Node.js帶有Express.js用於後端，Angular（或React）用於前端。<br/>但如果要使用Python開發你的應用程式呢？雖然嚴格專注於一種程式設計語言是不可取的(語言是工具)，專注於一種工具會讓你不那麼靈活-但單語言應用程式仍有空間。<br/>Brython可能是解決方案！它是JavaScript庫，能在瀏覽器中運行Python代碼。(Brython代表Browser Python)<br/>Brython的主要目標是取代JavaScript，並將Python作為Web的主角<br/>本語言，用於您的應用程式：<br/><br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;script type="text/python"&gt;<br/> import browser<br/> browser.document &lt;= "Hello world!"<br/> &lt;/script&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/><br/><br/>通常不支援的類型可以解釋我們編寫的Python代碼。我們列印了Hello World消息，類似JavaScript消息。&lt;script&gt;text/pythonbrowser.documentdocument<br/>在Brython介紹-可了解如何安裝、初始化、設置頁面樣式Brython，並和一些替代方案進行比較<br/><br/>安裝Brython<br/>安裝Brython的最方便的方法可能是不安裝它。如果不需要將其本地安裝到PC上，只需要在靜態網頁上載入即可向頁面添加一些動態功能，則應考慮簡單地導入外部資源。<br/>在HTML頁面的部分載入庫。這樣用戶端將在PC上載入HTML頁面的同時下載庫。<br/>為了實現，我們將從一些託管最新穩定版本的Brython在線的CDN（內容交付網路）載入我們的庫。<br/>內容交付網路是一組託管某些數據（代碼、影片內容、圖像等）的分散式伺服器。這類型的網路很可靠，幾乎沒有停機時間。使它們成為託管代碼庫的理想選擇。<br/><br/>有幾個CDN可供選擇，三個常用：<br/><br/>&lt;!-- Option 1 : jsDelivr CDN --&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.9.1/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.9.1/brython_stdlib.js"&gt;&lt;/script&gt;<br/><br/>&lt;!-- Option 2: CloudFlare CDN --&gt;<br/>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython_stdlib.min.js"&gt;&lt;/script&gt;<br/><br/>&lt;!-- Option 3: GitHub as the CDN --&gt;<br/>&lt;!-- Choose this option if you want to use the latest developement version --&gt;<br/>&lt;script src="https://raw.githack.com/brython-dev/brython/master/www/src/brython.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://raw.githack.com/brython-dev/brython/master/www/src/brython_stdlib.js"&gt;&lt;/script&gt;<br/><br/>通過Pip安裝Brython。<br/>想讓Brython有更靈活性，可以安裝它：<br/>$ pip3 install brython<br/>pip將在電腦上下載並安裝。<br/><br/>驗證Brython是否成功安裝：<br/>$ pip show brython <br/>這將列印出版本，和Brython軟體包的一些基本資訊：<br/>Name: brython<br/>Version: 3.9.2<br/>Summary: Brython is an implementation of Python 3 running in the browser<br/>Home-page: http://brython.info<br/>Author: Pierre Quentel<br/>Author-email: quentel.pierre@orange.fr<br/><br/>License: BSD<br/><br/>初始化Brython專案<br/>安裝Brython後，下一步是創建一個簡單的項目來測試功能。要建立專案，請創建新資料夾並移入其中：<br/>$ mkdir brython-project<br/>$ cd brython-project<br/>執行以下命令來初始化Brython專案：<br/>$ brython-cli --install<br/>建立並初始化Brython專案，包括起始專案目錄和檔案層次結構：<br/>brython-project<br/> | brython.js<br/> | brython_stdlib.js<br/> | demo.html<br/> | index.html<br/> | README.md<br/> | unicode.txt<br/><br/>這些檔的用途：<br/>brython.js- Brython核心引擎，包括最常用的模組，如果我們選擇不在本地安裝Brython，則使用此標籤將此檔包含在HTML頁面中。browserbrowser.htmljavascript&lt;script&gt;<br/>brython_stdlib.js- 由Brython支援的Python標準庫中的所有包和模組組成。<br/>demo.html- 運行Brython的簡單HTML頁面，展示了一些有趣的用例和我們如何利用Brython修改靜態HTML頁面的示例。<br/>index.html- 一個簡單的HTML頁面。Hello World<br/><br/>若簡單的將Web瀏覽器打開，則有其局限性，故建議先啟動本地主機伺服器。<br/>安裝后，我們可以啟動伺服器：<br/>$ python3 -m http.server<br/>在（預設）上啟動本地主機，並且您應該能夠通過導航到所選Web瀏覽器的位址欄來訪問該頁面。port 8000demo.htmlhttp://localhost:8000/demo.htmlhttp://0.0.0.0:8000/demo.html<br/>如果埠 8000 當前由其他進程使用，則必須定義要使用的另一個埠（例如 8080）：<br/><br/>$ python3 -m http.server 8080<br/>要創建能夠運行Python的新HTML頁面，需要在檔部分中導入theandfiles。然後繼續在HTML檔本身中編寫Python：brython.jsbrython_stdlib.jshead<br/>&lt;script src="brython.js"&gt;&lt;/script&gt;<br/>&lt;script src="brython_stdlib.js.js"&gt;&lt;/script&gt;<br/><br/>Brython運作<br/>Brython 使我們能夠通過將Python代碼轉換為JavaScript在瀏覽器中編寫和運行Python代碼。這段代碼將能在所有支援JavaScript的瀏覽器中運行，因為Brython故意避免使用新的、不受支援的語法生成JavaScript。<br/>可將轉譯視為編譯子集。<br/>編譯過程通常用高級程式設計語言（例如C）編寫的原始程式碼轉換為較低級別的語言（例如機器代碼）。<br/>轉譯是將高級語言轉換為另一種高級語言（例如Python到JavaScript）。<br/><br/>Brython中的轉譯發生在載入HTML頁面的同時。用HTML文件標籤中的函數：brython()body<br/>&lt;body onload="brython()"&gt;<br/>該函數執行寫在HTML文件標籤中的Python代碼的轉譯。所有Python代碼須用標籤括起來：brython()&lt;script type="text/python"&gt; &lt;script type="text/python"&gt;<br/>&lt;script type="text/python"&gt;<br/> &lt;!-- Python code --&gt;<br/>&lt;/script&gt;<br/>或者，使用以下命令將其載入到HTML文件中來包含外部Python代碼：<br/>&lt;script type="text/python" src="test.py"&gt;&lt;/script&gt;<br/>所有Web瀏覽器都支援JavaScript作為主要語言，但不支援Python。因此，所有 Python 代碼都需轉換為 JavaScript，然後在載入 HTML 頁面所需的時間內運行。<br/>該函數通過檢查所有具有 of 類型的腳本來搜索 HTML 頁面中的所有 Python 代碼，然後將所有代碼轉換為 JavaScript：brython()text/python<br/>此轉換的結果是 JavaScript 代碼的簡單字串表示。該字串必須在瀏覽器中作為 JavaScript 代碼運行。<br/>Brython 使用 JavaScriptfunction 來運行所有翻譯後的代碼。它可以使用 JavaScript 命令在某些瀏覽器上執行代碼。eval()new Function(function_name, source)(module)<br/>這不是運行 JavaScript 的首選方式。可能是危險的，因為它可能會將應用程式暴露給潛在的惡意第三方代碼。與替代方案相比，速度慢。eval()eval()<br/>如果 Python 代碼通過 HTML 文件載入，Brython 將執行 Ajax 調用以獲取載入檔的內容。該代碼被轉換為JavaScript，並以與上述相同的方式執行。&lt;script type="text/python" src="url"&gt;<br/><br/>與Brython合作 - 示例<br/>回顧幾個例子，以便瞭解 Brython 的工作原理及功能：<br/>世界您好<br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;script type="text/python"&gt;<br/> import browser<br/> browser.document &lt;= "Hello world!"<br/> &lt;/script&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>我們將專注於標籤之間的 Python 代碼：&lt;script type="text/python"&gt;&lt;/script&gt;<br/><br/>import browser將包載入到腳本中。它是將所有Brython特定的名稱和模組分組的包，主要用於表示JavaScript中使用的DOM元素和事件。browser<br/>browser.document是表示當前顯示的 HTML 文件的物件。<br/>browser.document &lt;= "Hello world!"- 我們使用符號而不是“接收”包含字串的新元素。另一種方法是使用以下語法：&lt;==documentHello world!browser.document.attach("Hello world!")<br/>在用戶端，一旦呈現此代碼 - 它會導致：<br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> Hello world!<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>添加元素和屬性<br/>修改示例，並添加一些段落和文本格式。該介面提供了模組，它公開了 HTML 標籤，可以用這些標籤從 Python 代碼動態創建 HTML 結構。建立物件的語法為：browserhtml<br/>browser.html.TAG("content", [attributes])<br/><br/>哪些輸出：<br/>&lt;TAG [attributes]&gt;content&lt;/TAG&gt;<br/>browser.html.H2("Hello world!")用標籤包裝字串。Hello world&lt;h2&gt;<br/>browser.html.A("link", href="stackabuse.com")創建安塔格。&lt;a href="stackabuse.com"&gt;<br/>可以進行嵌套，只需在另一個元素中包含 an即可。讓我們在頁面中添加一些元素：html.element<br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;script type="text/python"&gt;<br/> import browser<br/> <br/> title = browser.html.H2("Hello world!")<br/><br/> bold = browser.html.B("bold text")<br/> url = browser.html.A("link", href="stackabuse.com")<br/> paragraph = browser.html.P("This is a paragraph. This is " + bold + ", and this is a " + url)<br/><br/> browser.document &lt;= title<br/> browser.document &lt;= paragraph <br/> &lt;/script&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>可以創建沒有參數的物件並構建它，而不是使用這樣的參數創建物件： url = browser.html.A("link", href="stackabuse.com")<br/><br/># Creating an &lt;a&gt;&lt;/a&gt; tag<br/>url = browser.html.A()<br/><br/># Adding content between created tags<br/># &lt;a&gt;Url Text&lt;/a&gt;<br/>url &lt;= "Url Text"<br/># Adding href attribute<br/># &lt;a href="stackabuse.com"&gt;Url Text&lt;/a&gt;<br/>url.href = "stackabuse.com"<br/>完成 Python 代碼並打開頁面時 - 生成的 HTML 頁面應如下所示：<br/><br/>&lt;html&gt;<br/> &lt;head&gt;<br/> &lt;script src="/brython.js"&gt;&lt;/script&gt;<br/> &lt;/head&gt;<br/> &lt;body onload="brython()"&gt;<br/> &lt;h2&gt;Hello world!&lt;/h2&gt;<br/> &lt;p&gt;<br/> This is a paragraph. This is &lt;b&gt;bold text&lt;/b&gt;, and this is a <br/> &lt;a href="stackabuse.com"&gt;link&lt;/a&gt;.<br/> &lt;/p&gt;<br/> &lt;/body&gt;<br/>&lt;/html&gt;<br/>我們有aelement，在其中我們使用aandelement，事先構建。&lt;p&gt;&lt;b&gt;&lt;a&gt;<br/><br/>使用 Brython 建立表<br/>可以用一直應用的大致相同的邏輯創建表：table = browser.html.TABLE()<br/>創建幾行包含一些模擬資料並將它們添加到：table<br/><br/># Creating the row<br/>row = browser.html.TR()<br/># Adding header cells<br/>row &lt;= browser.html.TH("Header1")<br/>row &lt;= browser.html.TH("Header2")<br/># Appending the row to the table<br/>table &lt;= row<br/><br/># Adding a first row<br/>row = browser.html.TR()<br/>row &lt;= browser.html.TD("Data 1")<br/>row &lt;= browser.html.TD("Data 2")<br/>table &lt;= row<br/>最後選擇在 HTML 頁面上創建的 bankelement 中顯示表：&lt;div id="table-zone"&gt;<br/><br/>tableZone = browser.document["table-zone"] <br/>tableZone &lt;= table<br/>導致我們頁面上的 HTML 表格：<br/><br/>&lt;div id="table-zone"&gt;<br/> &lt;table&gt;<br/> &lt;thead&gt;<br/> &lt;tr&gt;<br/> &lt;th&gt;Header 1&lt;/th&gt;<br/> &lt;th&gt;Header 2&lt;/th&gt;<br/> &lt;/tr&gt;<br/> &lt;/thead&gt;<br/> &lt;tbody&gt;<br/> &lt;tr&gt;<br/> &lt;td&gt;Data 1&lt;/td&gt;<br/> &lt;td&gt;Data 2&lt;/td&gt;<br/> &lt;/tr&gt;<br/> &lt;/tbody&gt;<br/> &lt;/table&gt;<br/>&lt;/div&gt;<br/>向現有元素添加樣式<br/>為元素添加一些樣式：&lt;div id="table-zone"&gt;table<br/><br/>tableZone.style = {<br/> "background-color": "#dedfdd",<br/> "width": "50%",<br/> "min-height": "100px",<br/> "margin": "auto"<br/> }<br/> <br/>table.style = {<br/> "border": "1px solid #333",<br/> "margin": "auto"<br/> }<br/>這將導致修改的 HTML 標記，並添加屬性：style<br/><br/>&lt;div id="table-zone" style="background-color: rgb(222, 223, 221); width: 50%; min-height: 100px; margin: auto;"&gt;<br/> <br/>&lt;table style="border: 1px solid rgb(51, 51, 51); margin: auto;"&gt;<br/>綁定操作和從元素讀取內容<br/>網頁可用於顯示數據和捕獲數據。表單是提示使用者發送數據的方式之一。<br/>在Brython中創建一個表單，使用函數和HTML元素，如and：FORM()INPUT()LABEL()<br/><br/># Create a &lt;div id="form-div"&gt; element as a container for a new form<br/>formDiv = browser.html.DIV(id="form-div")<br/># Create a &lt;form&gt; element <br/>form = browser.html.FORM()<br/><br/># Create the &lt;input type="text"&gt; field wit the label and add it to the form<br/>input = browser.html.INPUT()<br/>input.type = "text"<br/>input.id = "input-name"<br/># Add label and to the form<br/>form &lt;= browser.html.LABEL("Enter your name: ") + input<br/><br/># Create the submit button and add it to the form<br/>button = browser.html.INPUT()<br/>button.type = "button"<br/>button.value = "Submit"<br/>button.id = "submit-button"<br/>form &lt;= button<br/><br/># Add form to the container &lt;div&gt; element<br/>formDiv &lt;= form<br/># Add the &lt;h4 id="form-response"&gt; to show the value from the form<br/>formDiv &lt;= browser.html.H4("Your name is: ", id="form-response")<br/># Display the div element containing form on the page<br/>browser.document &lt;= formDiv<br/>不執行任何操作的表單不是很有用。在 Brython 中使用自定義函數。創建一個名為 uponing the button 的 Python 函數。它將提醒使用者按鈕已被按下並更新元素的值：clicksubmit&lt;h4 id="form-response"&gt;<br/><br/>def onSubmit(ev):<br/> # Get the value of the &lt;input id="input-name"&gt; field<br/> name = browser.document["input-name"].value<br/> # Append the stored value to the content in the &lt;h4 id="form-response"&gt; tag<br/> browser.document["form-response"] &lt;= name<br/> # Alert the user that the button has been clicked<br/> browser.alert("The Submit Button is Clicked") <br/>將事件與創建的函數綁定，以便在按下按鈕時獲得所需的行為：clicksubmit-buttononSubmit()<br/><br/>browser.document["submit-button"].bind("click", onSubmit)<br/><br/>Brython與替代品相比<br/>除了Brython之外，還有其他決方案可以在Web瀏覽器中運行Python代碼<br/><br/>系統 編譯時間 運行機制<br/>布萊頓 頁面載入時 將 Python 轉換為 JavaScript<br/>轉譯 超前 將 Python 轉換為 JavaScript<br/>巴達維亞 超前 瀏覽器中的 Python 運行時<br/>斯庫爾普特 頁面載入後 將 Python 轉換為 JavaScript<br/>派皮.js 頁面載入後 瀏覽器中的 Python 運行時<br/>吡啶 頁面載入後 瀏覽器中的 Python 運行時<br/>其中一些傾向於完全取代JavaScript，另一些只是為Web瀏覽器創建一個有用的Python環境，作為JavaScript的可能替代品。一些解決方案正在將Python代碼轉換為JavaScript，如Brython，Skulpt和Transcrypt。<br/>就編譯時間而言，它是在載入 HTML 文件之前、之後或載入時執行的。<br/>Python代碼執行速度進行基準測試時，Brython處於更快的一端。提前將 Python 編譯（轉譯）為 JavaScript 的解決方案與包含翻譯代碼的大檔之間進行折衷，客戶端必須（向下）載入這些檔才能以“提前”方法運行腳本。<br/><br/>Brytho非常接近那個甜蜜點。<br/>基準測試顯然不能總是代表現實世界的情況，因為結果可能因執行的代碼而異，但它們可以在不同解決方案的性能之間提供很好的比較。<br/><br/>注意：Brython 比只對相同的代碼使用 JavaScript 慢。因為增加了轉譯步驟，它不會完全是0ms，之後運行JavaScript代碼。<br/><br/>結論<br/>如果你正在尋找JavaScript作為Web腳本語言的替代品，並且不太關心性能，那麼Brython可能是一個很好的解決方案。<br/>它在執行速度和載入庫所需的多餘記憶體使用之間不可避免的權衡的平衡方法使其成為在瀏覽器中運行 Python 的最佳性能解決方案之一。<br/><br/>Brython沒有龐大的社區和廣泛地使用。學習資源有限，局限於官方文檔，而沒有大型專案可以尋求指導。<br/><br/>是否值得取代JavaScript。即使是小規模的 Brython 專案，與用 JavaScript 編寫的完全相同的專案相比，執行速度也會慢 2 倍。JavaScript擁有龐大的開發人員社區，大量資源和現實世界的專案<br/><br/>JavaScript框架，是JavaScript流行的支柱。如果沒有他們的説明，JavaScript 只是另一種腳本語言，它為我們提供了動態更改靜態 HTML 頁面內容的能力。例如純JavaScript編寫複雜的伺服器端邏輯。即使可行，也不會是一次愉快的經歷。<br/><br/>Brython沒有為它開發的框架，只能使用純Python代碼，這對於簡單的用例之外的任何事情都是不合理的。無法像使用 JavaScript 和 Angular 那樣使用 Brython 創建一些複雜的單頁 Web 應用程式。對於只想使用Python進行伺服器端和用戶端程式設計來說，Brython是一個很好的工具，但還無法取代JavaScript</div>
-<div></div>
-<p></p>
-<h1>hw</h1>
-<h2>w10</h2>
-<p>心得:</p>
-<p><span>w10 將a班缺考人員程式和a班考試成績程式結合，這次的作業相對簡單，只要將老師給的2�<h1>hw</h1>
-<h2>w10</h2>
-<p>心得:</p>
-<p><span>w10 將a班缺考人員程式和a班考試成績程式結合，這次的作業相對簡單，只要將老師給的2個程式並在一起在稍加修改即可，但這次缺考和考0分都顯示0分所以讓我意識到其實如果上課還繼續玩手機看漫畫回家還不看老師錄製的影片，考試時才到該影片或該週內容查看的話其實頂多答2-3題時間就到了而且該題要得到分數的話該題的所有小題都要答對。</span></p>
-<h3>HW1</h3>
-<<<<<<< HEAD
-<div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/4b9c778c87c5a4d7cd585da5fbba737e/raw/3a0260a69e74726d4584b4b36752e053a7d1386b/HW10-1-1"> 1a缺考人員學號</a></div>
-=======
-<div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/4b9c778c87c5a4d7cd585da5fbba737e/raw/3a0260a69e74726d4584b4b36752e053a7d1386b/HW10-1-1">&nbsp;1a缺考人員學號</a></div>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
-<p><button id="add1to100"><span>1a缺考人員學號</span></button></p>
-<p></p>
-<p><span><!-- 導入 brython 程式庫 --></span></p>
-<p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-</p>
-<p><span><!-- 啟動 Brython --></span></p>
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script type="text/javascript" src="/static/ace/FileSaver.min.js"></script>
-<script type="text/javascript" src="/static/ace/filereader.js"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script type="text/javascript" src="/static/ace/ace.js"></script>
-<script type="text/javascript" src="/static/ace/ext-language_tools.js"></script>
-<script type="text/javascript" src="/static/ace/mode-python3.js"></script>
-<script type="text/javascript" src="/static/ace/snippets/python.js"></script>
 </p>
 <p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
 <script src="/static/Cango-24v03-min.js"></script>
@@ -293,7 +175,7 @@ doc["add1to100"].bind('click', add)
 <div id="kw_editor1" style="width: 600px; height: 300px;"></div>
 <p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
 <p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text">.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"></form>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
 <p><!-- 存擋表單結束 --></p>
 <p></p>
 <p><!-- 執行與清除按鈕開始 --></p>
@@ -304,17 +186,11 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div1"></div>
-<<<<<<< HEAD
+<p></p>
 <!-- editor1 結束 --><hr/><!-- ########################################## -->
 <div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/4b9c778c87c5a4d7cd585da5fbba737e/raw/3a0260a69e74726d4584b4b36752e053a7d1386b/HW10-1-2">若缺考者得分為0分,則1a人員學號和本次考試成績:</a></div>
+<p></p>
 <p><button id="add1to100part2"> <span>學號</span><span>和成績</span></button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
-=======
-<p><span><!-- editor1 結束 --></span></p>
-<hr>
-<p><span><!-- ########################################## --></span></p>
-<div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/4b9c778c87c5a4d7cd585da5fbba737e/raw/3a0260a69e74726d4584b4b36752e053a7d1386b/HW10-1-2">若缺考者得分為0分,則1a人員學號和本次考試成績:</a></div>
-<p><button id="add1to100part2">&nbsp;<span>學號</span><span>和成績</span></button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
 <p>
 <script type="text/python3">
@@ -420,7 +296,7 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <div id="kw_editor2" style="width: 600px; height: 300px;"></div>
 <p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
 <p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text">.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"></form>
+<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
 <p><!-- 存擋表單結束 --></p>
 <p></p>
 <p><!-- 執行與清除按鈕開始 --></p>
@@ -431,18 +307,15 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
-<<<<<<< HEAD
-<!-- editor2 結束 --><hr/>
-<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script><h3>HW2</h3>
-<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/4b9c778c87c5a4d7cd585da5fbba737e/raw/3a0260a69e74726d4584b4b36752e053a7d1386b/HW10-2">列出1,3,5,7,9</a></p>
-=======
+<p></p>
+<!-- editor2 結束 -->
 <p><span><!-- editor2 結束 --></span></p>
-<hr>
+<hr/>
 <p><span>
-<script type="text/javascript" src="https://unpkg.com/three@0.144.0/build/three.js"></script>
-</span></p><h3>HW2</h3>
+<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
+</span></p>
+<h3>HW2</h3>
 <p>列出1,3,5,7,9</p>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <p><button id="列出1,3,5,7,9,">列出1,3,5,7,9</button></p>
 <p><span><!-- 導入 brython 程式庫 --></span></p>
 <p>
@@ -570,13 +443,10 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
-<<<<<<< HEAD
-<!-- editor2 結束 --><hr/><h2>w12</h2>
-=======
+<!-- editor2 結束 --><hr/>
 <p><span><!-- editor2 結束 --></span></p>
 <hr/>
 <h2>w12</h2>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <ol>
 <li>溫度轉換公式 
 <pre><span class="cm-line"><span class="cm-string">f = c*9/5 + 32</span>
@@ -596,35 +466,19 @@ print(c, c*9/5 +32)</pre>
 </li>
 <li></li>
 </ol>
-<<<<<<< HEAD
-<!-- 
-=======
-<p><span><!-- 
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
-在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
--->
+<p><span><!-- >
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
-<<<<<<< HEAD
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <!-- 啟動 Brython -->
-=======
-<!-- 啟動 Brython --></span></p>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
-<p>
 <script>
 window.onload=function(){
 brython({debug:1, pythonpath:['/static/','/downloads/py/']});
 }
 </script>
-<!-- 以下事先在頁面中加入 id="brython_div" 的 div 標註
-之後可利用 Brython 的 document 模組與此 html 標註對應
---></p>
-<<<<<<< HEAD
-<!-- 利用 html 建立一個 id="btn1" 的按鈕 -->
-<p><button id="btn1">取使用者輸入</button></p>
-=======
+</span></p>
 <p><span><!-- 利用 html 建立一個 id="btn1" 的按鈕 --></span></p>
-<p><button id="btn1">取使用者輸入</button></p>
+<p></p>
 <p></p>
 <p>老師提出了4個問題</p>
 <div>
@@ -637,7 +491,6 @@ brython({debug:1, pythonpath:['/static/','/downloads/py/']});
 <p>心得:</p>
 <p>    </p>
 </div>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <div id="brython_div"></div>
 <p>
 <script type="text/python">
@@ -663,12 +516,8 @@ def get_input(env):
 # 讓使用者 click 後會經由瀏覽器中的 event 通知執行 get_input 函式
 document["btn1"].bind('click', get_input)
 </script>
-<<<<<<< HEAD
-</p><h2>w13</h2>
-=======
 </p>
 <h2>w13</h2>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <div>
 <pre><span class="cm-line"><span class="cm-string">f = c*9/5 + 32</span>
 </span><span class="cm-line"><span class="cm-string">c = (f-32)*5/9<br/><br/></span></span>溫度轉換成是範例1<br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/7e403bd4e865aec53327f22e44b475879d048f65/w13_temp_ex1.py">ex1</a><br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src2=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/b6cd4203e167167eb3e477f72569b4c053559827/w13_temp_ex2.py">ex2</a><br/><br/>心得: 待更新</pre>
@@ -677,7 +526,6 @@ document["btn1"].bind('click', get_input)
 <div>
 <div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/84fa382535fef56df31c9adacf5aef42/raw/0deafbd57eeabc52da8519b565e0db45749682ea/cp2022_w14">w14缺考人員名單</a></div>
 <div></div>
-</div>
 <h2>w15</h2>
 <p>心得:</p>
 <p></p>
@@ -720,12 +568,9 @@ document["btn1"].bind('click', get_input)
 <p>修改以下程式</p>
 <p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/7e44ce6fe7fadeab7f112546f0c852da/raw/88fc160b6dd5450f2acb7bf540dda17f995d44ff/HW15">原程式</a></p>
 <p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/7e44ce6fe7fadeab7f112546f0c852da/raw/80e7a1261e2fe8c77bb7b6663c37c531cac4435c/After%2520the%2520update">更新後</a></p>
-<<<<<<< HEAD
-<p></p><h1>cp2022</h1>
-=======
-<p></p>
+<h2>w16</h2>
+<h2>w17</h2>
 <h1>cp2022</h1>
->>>>>>> 618474727be3921642c09d8f3774f2d902a3407c
 <p><a href="https://mdecp2022.github.io/site-40923118/content/cp2022.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/dc2d7cbfa49a7b02e28ae9b1cd31adfd6fd9bb3f/random_draw_1a.py&amp;
 src2=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/ad87258d056918e4dfe993b2e32f34e66c816c71/list_1a_static_site.py">w6 test</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
@@ -1019,9 +864,7 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
 </span></p>
 <h1>Brython</h1>
-<p>=======</p>
 <p>cmsite: wcms use <a href="https://github.com/mdecycu/cmsimde">https://github.com/mdecycu/cmsimde</a> as submodule </p>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 17bc60d30eb0377058d1a2b85743ac3c40cf46dd</p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
@@ -1303,4 +1146,4 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <p><span><!-- editor2 結束 --></span></p>
-<hr/>
+<hr/></div>
