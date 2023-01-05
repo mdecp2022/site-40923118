@@ -47,7 +47,8 @@ for i in data[:5]:
     link = html.A(stud_num, href=site)
     brython_div1 &lt;= link
     brython_div1 &lt;= html.BR()</pre>
-<p></p><h1>Guide to Brython H1</h1>
+<p></p>
+<h1>Guide to Brython H1</h1>
 <div>請閱讀<a href="https://stackabuse.com/an-introductory-guide-to-brython/">此文</a>並整理文章重點</div>
 <div>雖然老師希望我們盡可能的不要使用google翻譯但是內容太多了</div>
 <div>以下為重點整理</div>
@@ -447,50 +448,26 @@ doc["add1to100"].bind('click', add)
 <p><span><!-- editor2 結束 --></span></p>
 <hr/>
 <h2>w12</h2>
-<ol>
-<li>溫度轉換公式 
-<pre><span class="cm-line"><span class="cm-string">f = c*9/5 + 32</span>
-</span><span class="cm-line"><span class="cm-string">c = (f-32)*5/9</span></span></pre>
-</li>
-<li></li>
-<li>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">'''
-f = c*9/5 + 32
-c = (f-32)*5/9
-'''
-c = input("請輸入攝氏溫度值")
-#print(type(c))
-c = float(c)
-print(c, c*9/5 +32)</pre>
-<p><br/><br/></p>
-</li>
-<li></li>
-</ol>
-<p><span><!-- >
+<p>1.溫度轉換公式 <br/>    f = c*9/5 + 32<br/>    c = (f-32)*5/9</p>
+<p></p>
+<p>4.</p>
+<!-- 
+在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
+-->
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <!-- 啟動 Brython -->
+<p>
 <script>
 window.onload=function(){
 brython({debug:1, pythonpath:['/static/','/downloads/py/']});
 }
 </script>
-</span></p>
-<p><span><!-- 利用 html 建立一個 id="btn1" 的按鈕 --></span></p>
-<p></p>
-<p></p>
-<p>老師提出了4個問題</p>
-<div>
-<ol>
-<li>何謂 Brython 程式環境?</li>
-<li>如何編寫單位轉換程式?</li>
-<li>如何將在近端編寫的程式儲存至個人的 Gist 區域? 如何引用 Gist 程式?</li>
-<li>如何將近端的動態與靜態網站內容, 以 http 網路協定提交推送到 Github 雲端主機? (為什麼要將資料存在雲端?能不能直接在雲端上編寫 Brython 程式?然後將程式存)</li>
-</ol>
-<p>心得:</p>
-<p>    </p>
-</div>
+<!-- 以下事先在頁面中加入 id="brython_div" 的 div 標註
+之後可利用 Brython 的 document 模組與此 html 標註對應
+--></p>
+<!-- 利用 html 建立一個 id="btn1" 的按鈕 -->
+<p><button id="btn1">取使用者輸入</button></p>
 <div id="brython_div"></div>
 <p>
 <script type="text/python">
@@ -507,10 +484,8 @@ brython_div = document["brython_div"]
 # 之後若要列出 html, 則需要透過 Brython 的 html 模組
 # 接下來要設法按下按鈕之後才執行取使用者 input 的流程
 # 首先 comment 掉前面的 input() 與 print(), 同時蓋掉輸出, 並利用事件導向設計一個函式
-def get_input(env):
+def get_input(c):
     user_input_temp = input("請輸入攝氏溫度值:")
-    input = float(input)
-    print(input, input*9/5 +32)
     brython_div <= user_input_temp
 # 透過 Brython browser 模組中的 document 物件將 id="btn1" 的物件中的 bind() 方法
 # 讓使用者 click 後會經由瀏覽器中的 event 通知執行 get_input 函式
@@ -521,13 +496,28 @@ document["btn1"].bind('click', get_input)
 <div>
 <pre><span class="cm-line"><span class="cm-string">f = c*9/5 + 32</span>
 </span><span class="cm-line"><span class="cm-string">c = (f-32)*5/9<br/><br/></span></span>溫度轉換成是範例1<br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/7e403bd4e865aec53327f22e44b475879d048f65/w13_temp_ex1.py">ex1</a><br/><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src2=https://gist.githubusercontent.com/40923118/36d01af56f8ea7c33d020c40f3f991f9/raw/b6cd4203e167167eb3e477f72569b4c053559827/w13_temp_ex2.py">ex2</a><br/><br/>心得: <br/>這週老師在上課時親自示範溫度轉換程式，雖然跟著做了，但是在w17時老師問了很多同學該如何寫1+到10/<br/>1+到100或是該如何利用溫度轉換程式改寫為英吋和公分轉換，當時聽到老師在問其他同學這個問題我自己發<br/>現雖然知道那是一樣的東西但是我也寫不出來，還好後來老師有示範，看完影片後才了解到開如何寫(任何)有<br/>關單位轉化的程式(此心得於w17補上)</pre>
-</div><h2>w14</h2>
+</div>
+<h2>w14</h2>
+<!-- 
+在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
+-->
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','/downloads/py/']});
+}
+</script>
+</p>
 <p>心得:</p>
 <p>這週的作業只要將w10的作業複製並將w10考試結果網址換成w14的即可完成。</p>
 <div>
 <div><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/84fa382535fef56df31c9adacf5aef42/raw/0deafbd57eeabc52da8519b565e0db45749682ea/cp2022_w14">w14缺考人員名單</a></div>
 <div></div>
-</div><h2>w15</h2>
+</div>
+<h2>w15</h2>
 <p>心得:</p>
 <p></p>
 <p>w15 利用視覺暫留(透過html5 canvas) 做出動畫 經過反覆使用#(單行註解)嘗試寫程式後發現才原程式(h&gt;=&lt;n)為綠色格子重頭走到尾(ex右上到左上)，而(s 1:)是指每次走一格，剛開始還不了解程式，以為只要將s 1:改成s 1/2:綠色格子就能走到第8格(中間)後依照後面程式轉向，結果實際情況是移動速度變慢還脫出一排白色腳印，一直到後來詢問同學後才發現。完成這次作業後讓我對寫程式有更深的了解，和學習自己註解程式(使用#解釋該程式的意思或如何作用)的重要性。</p>
@@ -754,9 +744,43 @@ origy = 1
 # 利用 grid 函式畫出格線
 grid(origx, origy, w, h, wnum, hnum, pixel=1, color="black")
 doc["power"].bind("click", launchAnimation)</pre>
-<p></p><h2>w17</h2>
+<p></p>
+<h2>w17</h2>
+<p>練習寫程式</p>
+<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/22aa2e896f4fd2d6b4aad918ce93d32b/raw/f24c8c289c8e1731d09c29ee655a979c099d7157/%25E7%25B7%25B4%25E7%25BF%2592%25E5%25AF%25AB%25E7%25A8%258B%25E5%25BC%258F">test</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#利用def定義函式，函式名稱為test，此函式有start和edn2個變數
+def test(start,end):
+#從零開始
+    a = 0
+#定義出i值範圍，其初始值為start，最大值為end+1(若只寫end則程式運算時不換超過end的值(&lt;end)，寫end+1時此程式會運算到第10行定義的end值)，每次增量為2
+    for i in range(start,end+1,2):
+        a = a + i
+#利用str將浮點、整數轉為字串(int則可將字串、浮點轉為整數)
+    print("從" + str(start) + "加到" + str(end) + "的奇數等於" + str(a))
+#列出自訂的函式名稱和對應的變數程式即可運算
+test(1,10)
+'''
+#利用def定義函式，函式名稱為kg，設定變數a
+def kg(a):
+#單位轉換公式
+    g = a*1000
+#利用str將整數轉為字串
+    print(str(a) + "公斤" + "等於" + str(g) + "公克")
+#給定變數值及可轉換單位
+kg(10)
+'''</pre>
+<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/22aa2e896f4fd2d6b4aad918ce93d32b/raw/300e4b4d0539f2c8e9b67dc7cc511e2891832f60/python%25E9%2597%259C%25E9%258D%25B5%25E5%25AD%2597">列出關鍵字</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import keyword
+print(keyword.kwlist)
+'''
+'''</pre>
+<p>以下為python關鍵字</p>
+<p>['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']</p>
 <p>心得(解決衝突):</p>
-<p>在上週我在進入要<strong>https://127.0.0.1:9443/</strong>時發現突然無法登入了，反而顯示了"<em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>."，當時想說因該是因為我當時隨身碟和筆電的版本不同(當時隨身碟版本較新)，只要<strong>git pull</strong>(將遠端的新版本拉下來合併)就可以了，結果系統提示我使用<strong>git push</strong>(當遠端版本較舊時將近端推到遠端已跟新遠端版本)，結果發現打完2個指令還是不能利用cms的指令進入<strong>https://127.0.0.1:9443/</strong>，後來查了一下開如何解決，雖然也有人顯示<span>"</span><span><em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>.</span>"但是還是沒辦法解決，這這樣到下課了，到今天我上台和老師講解我這學期做了什麼的時候老師問了我一句:你知道你衝突還沒解決嗎?我才知道原來那個是發生衝突，後來詢問老之，老師幫我下載了一個可以辨別不同處的軟體(在<strong>KDiff3</strong>中匯入<span>content_backup</span>和<span>content_backup</span>後此軟體會自動分析出這2個資料程式碼的不同處-即為衝突點)，後來老師先幫我將有衝突的和沒衝突的都備份了一份，然後利用沒有衝突可以執行的那一份進入https://127.0.0.1:9443/(簡單來說就是將複製的content_backup改成content，並把原本有衝突的content刪除這樣只會剩下content-複製和content_backup和由content_backup改名成的content這時就可以正常進https://127.0.0.1:9443/) 之後告訴我將那份有衝突的資料(<span>content-複製</span>)拉入<strong>Untitled</strong>然後再去改[雖然可以利用Search(收尋)收尋到======(我也不知道為什們是6個等號可能是有衝突的地方就會有巴)然後直接找出衝突並修正，但這樣可能會刪到一些表面上看不到的程式碼，所以我是利用KDiff3找出所有衝突點，再到<strong>Untitled</strong>找到對應位置並進行修正(也不知道可不可以直接複製貼上)，之後才成功解決衝突?(我不知道還有沒有其他衝突)]，最後提醒有看到此文的同學，如果有發生問題，問同學或上網查都可以，但是如果還是不行那就趕快去問老師吧。</p><h1>cp2022</h1>
+<p>在上週我在進入要<strong>https://127.0.0.1:9443/</strong>時發現突然無法登入了，反而顯示了"<em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>."，當時想說因該是因為我當時隨身碟和筆電的版本不同(當時隨身碟版本較新)，只要<strong>git pull</strong>(將遠端的新版本拉下來合併)就可以了，結果系統提示我使用<strong>git push</strong>(當遠端版本較舊時將近端推到遠端已跟新遠端版本)，結果發現打完2個指令還是不能利用cms的指令進入<strong>https://127.0.0.1:9443/</strong>，後來查了一下開如何解決，雖然也有人顯示<span>"</span><span><em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>.</span>"但是還是沒辦法解決，這這樣到下課了，到今天我上台和老師講解我這學期做了什麼的時候老師問了我一句:你知道你衝突還沒解決嗎?我才知道原來那個是發生衝突，後來詢問老之，老師幫我下載了一個可以辨別不同處的軟體(在<strong>KDiff3</strong>中匯入<span>content_backup</span>和<span>content_backup</span>後此軟體會自動分析出這2個資料程式碼的不同處-即為衝突點)，後來老師先幫我將有衝突的和沒衝突的都備份了一份，然後利用沒有衝突可以執行的那一份進入https://127.0.0.1:9443/(簡單來說就是將複製的content_backup改成content，並把原本有衝突的content刪除這樣只會剩下content-複製和content_backup和由content_backup改名成的content這時就可以正常進https://127.0.0.1:9443/) 之後告訴我將那份有衝突的資料(<span>content-複製</span>)拉入<strong>Untitled</strong>然後再去改[雖然可以利用Search(收尋)收尋到======(我也不知道為什們是6個等號可能是有衝突的地方就會有巴)然後直接找出衝突並修正，但這樣可能會刪到一些表面上看不到的程式碼，所以我是利用KDiff3找出所有衝突點，再到<strong>Untitled</strong>找到對應位置並進行修正(也不知道可不可以直接複製貼上)，之後才成功解決衝突?(我不知道還有沒有其他衝突)]，最後提醒有看到此文的同學，如果有發生問題，問同學或上網查都可以，但是如果還是不行那就趕快去問老師吧。</p>
+<h2>期末心得</h2>
+<p></p>
+<h1>cp2022</h1>
 <p><a href="https://mdecp2022.github.io/site-40923118/content/cp2022.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/dc2d7cbfa49a7b02e28ae9b1cd31adfd6fd9bb3f/random_draw_1a.py&amp;
 src2=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/ad87258d056918e4dfe993b2e32f34e66c816c71/list_1a_static_site.py">w6 test</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
