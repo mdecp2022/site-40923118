@@ -747,7 +747,7 @@ doc["power"].bind("click", launchAnimation)</pre>
 <p></p>
 <h2>w17</h2>
 <p>練習寫程式</p>
-<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/22aa2e896f4fd2d6b4aad918ce93d32b/raw/f24c8c289c8e1731d09c29ee655a979c099d7157/%25E7%25B7%25B4%25E7%25BF%2592%25E5%25AF%25AB%25E7%25A8%258B%25E5%25BC%258F">test</a></p>
+<p>1.<a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/22aa2e896f4fd2d6b4aad918ce93d32b/raw/f24c8c289c8e1731d09c29ee655a979c099d7157/%25E7%25B7%25B4%25E7%25BF%2592%25E5%25AF%25AB%25E7%25A8%258B%25E5%25BC%258F">test</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#利用def定義函式，函式名稱為test，此函式有start和edn2個變數
 def test(start,end):
 #從零開始
@@ -769,7 +769,7 @@ def kg(a):
 #給定變數值及可轉換單位
 kg(10)
 '''</pre>
-<p><a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/22aa2e896f4fd2d6b4aad918ce93d32b/raw/300e4b4d0539f2c8e9b67dc7cc511e2891832f60/python%25E9%2597%259C%25E9%258D%25B5%25E5%25AD%2597">列出關鍵字</a></p>
+<p>2.<a href="https://mdecp2022.github.io/site-40923118/content/Brython.html?src=https://gist.githubusercontent.com/40923118/22aa2e896f4fd2d6b4aad918ce93d32b/raw/300e4b4d0539f2c8e9b67dc7cc511e2891832f60/python%25E9%2597%259C%25E9%258D%25B5%25E5%25AD%2597">列出關鍵字</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import keyword
 print(keyword.kwlist)
 '''
@@ -777,8 +777,7 @@ print(keyword.kwlist)
 <p>以下為python關鍵字</p>
 <p>['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']</p>
 <p>心得(解決衝突):</p>
-<p>在上週我在進入要<strong>https://127.0.0.1:9443/</strong>時發現突然無法登入了，反而顯示了"<em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>."，當時想說因該是因為我當時隨身碟和筆電的版本不同(當時隨身碟版本較新)，只要<strong>git pull</strong>(將遠端的新版本拉下來合併)就可以了，結果系統提示我使用<strong>git push</strong>(當遠端版本較舊時將近端推到遠端已跟新遠端版本)，結果發現打完2個指令還是不能利用cms的指令進入<strong>https://127.0.0.1:9443/</strong>，後來查了一下開如何解決，雖然也有人顯示<span>"</span><span><em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>.</span>"但是還是沒辦法解決，這這樣到下課了，到今天我上台和老師講解我這學期做了什麼的時候老師問了我一句:你知道你衝突還沒解決嗎?我才知道原來那個是發生衝突，後來詢問老之，老師幫我下載了一個可以辨別不同處的軟體(在<strong>KDiff3</strong>中匯入<span>content_backup</span>和<span>content_backup</span>後此軟體會自動分析出這2個資料程式碼的不同處-即為衝突點)，後來老師先幫我將有衝突的和沒衝突的都備份了一份，然後利用沒有衝突可以執行的那一份進入https://127.0.0.1:9443/(簡單來說就是將複製的content_backup改成content，並把原本有衝突的content刪除這樣只會剩下content-複製和content_backup和由content_backup改名成的content這時就可以正常進https://127.0.0.1:9443/) 之後告訴我將那份有衝突的資料(<span>content-複製</span>)拉入<strong>Untitled</strong>然後再去改[雖然可以利用Search(收尋)收尋到======(我也不知道為什們是6個等號可能是有衝突的地方就會有巴)然後直接找出衝突並修正，但這樣可能會刪到一些表面上看不到的程式碼，所以我是利用KDiff3找出所有衝突點，再到<strong>Untitled</strong>找到對應位置並進行修正(也不知道可不可以直接複製貼上)，之後才成功解決衝突?(我不知道還有沒有其他衝突)]，最後提醒有看到此文的同學，如果有發生問題，問同學或上網查都可以，但是如果還是不行那就趕快去問老師吧。</p>
-<h2>期末心得</h2>
+<p>在上週我在進入要<strong>https://127.0.0.1:9443/</strong>時發現突然無法登入了，反而顯示了"<em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>."，當時想說因該是因為我當時隨身碟和筆電的版本不同(當時隨身碟版本較新)，只要<strong>git pull</strong>(將遠端的新版本拉下來合併)就可以了，結果系統提示我使用<strong>git push</strong>(當遠端版本較舊時將近端推到遠端已跟新遠端版本)，結果發現打完2個指令還是不能利用cms的指令進入<strong>https://127.0.0.1:9443/</strong>，後來查了一下開如何解決，雖然也有人顯示<span>"</span><span><em>warning: this is a development server. do not use it in a production deployment. use a production wsgi server instead</em>.</span>"但是還是沒辦法解決，這這樣到下課了，到今天我上台和老師講解我這學期做了什麼的時候老師問了我一句:你知道你衝突還沒解決嗎?我才知道原來那個是發生衝突，後來詢問老之，老師幫我下載了一個可以辨別不同處的軟體(在<strong>KDiff3</strong>中匯入<span>content_backup</span>和<span>content_backup</span>後此軟體會自動分析出這2個資料程式碼的不同處-即為衝突點)，後來老師先幫我將有衝突的和沒衝突的都備份了一份，然後利用沒有衝突可以執行的那一份進入https://127.0.0.1:9443/(簡單來說就是將複製的content_backup改成content，並把原本有衝突的content刪除這樣只會剩下content-複製和content_backup和由content_backup改名成的content這時就可以正常進https://127.0.0.1:9443/) 之後告訴我將那份有衝突的資料(<span>content-複製</span>)拉入<strong>Untitled</strong>然後再去改[雖然可以利用Search(收尋)收尋到======(我也不知道為什們是6個等號可能是有衝突的地方就會有巴)然後直接找出衝突並修正，但這樣可能會刪到一些表面上看不到的程式碼，所以我是利用KDiff3找出所有衝突點，再到<strong>Untitled</strong>找到對應位置並進行修正(也不知道可不可以直接複製貼上)，之後才成功解決衝突?(我不知道還有沒有其他衝突)]，最後提醒有看到此文的同學，如果有發生問題，問同學或上網查都可以，但是如果還是不行那就趕快去問老師吧。</p><h2>期末心得</h2>
 <p></p>
 <h1>cp2022</h1>
 <p><a href="https://mdecp2022.github.io/site-40923118/content/cp2022.html?src=https://gist.githubusercontent.com/40923118/a28b61ae1a907955e03b464d164e7f03/raw/dc2d7cbfa49a7b02e28ae9b1cd31adfd6fd9bb3f/random_draw_1a.py&amp;
