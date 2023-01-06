@@ -142,7 +142,7 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">w17 << <a href='w17.html'>Previous</a> <a href='cp2022.html'>Next</a> >> cp2022<br /><h1>w18</h1>
-<p>1.<span>變數宣告</span></p>
+<p><span>(1)變數宣告</span></p>
 <p>變數訂定規則</p>
 <ol>
 <li>不可使用 Python 關鍵字作為變數</li>
@@ -151,6 +151,15 @@ img.add_border {
 </ol>
 <p>Python 程式語言的關鍵字:</p>
 <div id="keyword">False,<span> </span>None,<span> </span>True,<span> </span>and,<span> </span>as,<span> </span>assert,<span> </span>async,<span> </span>await,<span> </span>break,<span> </span>class,<span> </span>continue,<span> </span>def,<span> </span>del,<span> </span>elif,<span> </span>else,<span> </span>except,<span> </span>finally,<span> </span>for,<span> </span>from,<span> </span>global,<span> </span>if,<span> </span>import,<span> </span>in,<span> </span>is,<span> </span>lambda,<span> </span>nonlocal,<span> </span>not,<span> </span>or,<span> </span>pass,<span> </span>raise,<span> </span>return,<span> </span>try,<span> </span>while,<span> </span>with,<span> </span>yield,<span> </span>共有 35 個.</div>
+<div>
+<p>(2)<span>資料型別轉換</span></p>
+<p>int(in) 可以將輸入的 in 變數轉為整數 (integer)</p>
+<p>float(in) 可以將輸入的 in 變數轉為浮點數 (floating number)</p>
+<p>str(in) 可以將輸入的 in 變數轉為字串 (string)</p>
+<p></p>
+<p>ex.1+2</p>
+<div id="add_to_9">蘋果10$和一列1-10的奇數</div>
+</div>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 使用 apple 作為變數名稱, 並與整數 10 對應
 apple = 10
 # 在前後加上文字/符號(蘋果/$)時印出 蘋果10$
@@ -160,6 +169,264 @@ print("蘋果" + str(apple) + "$")
 # 以下程式會印出 1到10的奇數 等五個整數.
 for i in range(1,10,2):
     print(i)</pre>
+<p>(3)<span>資料的基本運算</span></p>
+<p>資料包含 integer, floating number 與 string</p>
+<p>整數與浮點數可以進行加、減、乘與除運算.</p>
+<p>字串則可進行加與乘運算.</p>
+<p>ex.3</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 以下可以利用 for 重複迴圈進行整數累加
+# 先設定累加總和變數為 sum
+# 一開始尚未進行整數累加, sum 的對應值為 0，end 的對應值為10
+sum = 0
+end = 10
+# 接著利用 for 迴圈以增量2產生希望進入累加的整數
+for i in range(1, end+1,2):
+    # 假設從 1 要累加到 10, 的奇數
+    sum = sum + i
+    # 當迴圈逐一產生增量後的 i 整數後, 分別與當時的 sum 對應值累加
+# 當 i 增加到 10 時, 程式的執行就會跳出 for 環圈, 這時就可以印出累加後的總整數值
+print("從 1 加到  10的奇數: " + str(sum))</pre>
+<p>(4)<span>函式定義與呼叫</span></p>
+<p>def 為 define 的縮寫, 在 Python 程式語法, 可以利用 def 定義函式.</p>
+<p>ex.4(w17的test)</p>
+<div id="add_to_9">從 1 加到 10 的奇數等於: 25</div>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#利用def定義函式，函式名稱為test，此函式有start和edn2個變數
+def test(start,end):
+#從零開始
+    a = 0
+#定義出i值範圍，其初始值為start，最大值為end+1(若只寫end則程式運算時不換超過end的值(&lt;end)，寫end+1時此程式會運算到第10行定義的end值)，每次增量為2
+    for i in range(start,end+1,2):
+        a = a + i
+#利用str將浮點、整數轉為字串(int則可將字串、浮點轉為整數)
+    print("從" + str(start) + "加到" + str(end) + "的奇數等於" + str(a))
+#列出自訂的函式名稱和對應的變數程式即可運算
+test(1,10)</pre>
+<p>(5)<span>從 Gist 讀取資料</span></p>
+<p><span>ex.5 (w16作業-將w15走8字形的綠色方塊加入按鈕)</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 將 Brython 程式存入 Gist, 並取得其 url 網址
+url = "https://gist.githubusercontent.com/40923118/b31ff1db41b60bc97de50c374b97043f/raw/d4e167a8a72f120353d006361616f682dee62a1e/HW16"
+# 利用 open() 與 read() 取得程式碼
+data = open(url).read()
+# 利用 exec() 執行
+ns = {'__name__':'__main__'}
+exec(data, ns)</pre>
+<p>(6)<span>數列應用</span></p>
+<p><span>ex.6(老師原先數列應用的範例)</span></p>
+<p>以下程式顯示希望這門課能及格不用再重修人員名單</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 已知 cp2022 1a 修課學員學號, 可以輾轉從下列 url 取出
+url = "https://nfu.cycu.org/?semester=1111&amp;courseno=0747&amp;column=True"
+data = open(url).read()
+# 上列 data 為學員學號分別以跳行符號各自列成一列
+# 以下利用跳行符號對 data 進行分割, 可以得到型別為 list 的 data 豎列
+data = data.split("\n")
+# 但取回的資料最後一筆為空白行, 因此數列最後一個元素必須去除
+# 冒號前面沒有索引值, 表示從數列的第一個元素開始取用
+# 冒號後面加上 -1, 表示數列的取值, 只取到倒數第一位的前一個元素, 也就可以去除最後一個空白元素
+data = data[:-1]
+print(data)</pre>
+<p>(7)<span>字典應用</span></p>
+<p>ex.7</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">stud_1a_url = "https://mde.tw/studlist/2022fall/1a.txt"
+data = open(stud_1a_url).read()
+# 因為資料中的第一個欄位為學號, 而第二個欄位為 Github 帳號, 且各列資料以 \t 隔開, 因此讀取後先以各列的跳行符號分割, 將各學員的資料先放入數列後再逐一取出分割出學號與 Github 帳號對應值
+# 先宣告一個空的字典
+num_github = {}
+data = data.split("\n")
+# 因為第一列資料為標題, 必須利用 data[1:] 表示從索引值第二位開始取用
+# 而且最後一筆為空資料, 也必須去除, 因此最後只取用 data[1:-1]
+for i in data[1:-1]:
+    each_stud = i.split("\t")
+    stud_num = each_stud[0]
+    github = each_stud[1]
+    # 逐一以學號作為字典索引, 對應至各學員的 Github 帳號
+    num_github[stud_num] = github
+ 
+# 試著利用字典列出 40923118 的 Github 帳號
+print(num_github["40923118"])</pre>
+<p>(8)<span>Brython 的 Canvas 靜態繪圖</span></p>
+<p><span>ex.8</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 畫日本國旗(未依照比例)
+# 導入 doc
+from browser import document as doc
+# 以下將利用 html 產生所需的繪圖畫布
+from browser import html
+# 利用 math 函式庫執行三角函數運算
+import math
+canvas = html.CANVAS(width = 600, height = 400)
+#canvas.style = {"width": "100%"}
+canvas.id = "taiwan_flag"
+# 將圖畫至 id 為 brython_div 的 cnavas 標註
+brython_div = doc["brython_div"]
+brython_div &lt;= canvas
+# 準備繪圖畫布
+canvas = doc["taiwan_flag"]
+ctx = canvas.getContext("2d")
+# 進行座標轉換, x 軸不變, y 軸反向且移動 canvas.height 單位光點
+# ctx.setTransform(1, 0, 0, -1, 0, canvas.height)
+# 以下採用 canvas 原始座標繪圖
+flag_w = canvas.width
+flag_h = canvas.height
+# 畫圓
+ctx.beginPath()
+ctx.arc(300, 200, flag_w/5, 00, math.pi*2, True)
+ctx.closePath()
+# 將圓填滿紅色
+ctx.fillStyle='rgb(255, 0, 0)'
+ctx.fill()
+#參考老師過國旗的程式(我只有修改22-28)</pre>
+<p>(9)<span>Brython 的 Canvas 動態繪圖(w15作業)</span></p>
+<p><span>ex.9</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 這個程式用於 demo 綠色方塊沿著特定網格路徑行走
+# 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc
+from browser import document as doc
+# 從 browser 模組導入 html 類別, 主要用於建立 CANVAS 標註物件, 並插入頁面中
+from browser import html
+# 用於定時執行特定函式
+import browser.timer
+# 導入亂數模組
+from random import random, randint
+
+# 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應
+canvas = html.CANVAS(width = 600, height = 600)
+# 將 canvas 標註的 id 設為 "canvas"
+canvas.id = "canvas"
+# 將 document 中 id 為 "brython_div" 的標註 
+# 設為與 brython_div 變數對應
+brython_div = doc["brython_div1"]
+# 將 canvas 標註放入 brython_div1 所在位置
+# 頁面中原本就已經放入 &lt;div id="brython_div"&gt;&lt;/div&gt; 標註
+brython_div &lt;= canvas
+# 將頁面中 id 為 canvas 的 CANVAS 設為與 canvas 變數對應
+canvas = doc["canvas"]
+# 將 canvas 的 2d 繪圖 context 命名為 ctx
+ctx = canvas.getContext("2d")
+
+# 建立畫直線函式
+def draw_line(x1, y1, x2, y2, color="#ff0000"):
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.strokeStyle = color
+    ctx.stroke()
+
+# 建立 write Text 函式
+def wText(x, y, t, s=14, c='#0000ff'):
+    ctx.font = str(s) + "px Arial";
+    ctx.fillText(t, x, y)
+
+# 定義畫格線的函式
+def grid(startx, starty, w, h, wnum, hnum, pixel=1, color="#ff0000"):
+    # 利用迴圈與座標增量繪圖
+    # 因為輸入 wnum 與 hnum 為格子數, 畫格線數則需加上 1
+    for i in range(wnum+1):
+        for j in range(hnum+1):
+            # 畫上下直線
+            yend = starty + h*(hnum)
+            xend = startx + w*(wnum)
+            x = startx + i*w
+            draw_line(x, starty, x, yend, color)
+            # 畫左右直線
+            y = starty + j*h
+            draw_line(startx, y, xend, y, color)
+            #wText(w/2-10, y-w/2, str(j))
+
+# 從兩個座標點求中心點座標
+def center(lx, ly, rx, ry):
+    # lx is x coord of the left up corner
+    # rx is the x coord of th right down corner
+    x = (lx + rx)/2
+    y = (ly + ry)/2
+    return x, y
+    
+# 畫出填色方塊
+def draw_rect(gx, gy, gw, gh, color="lime"):
+    # gx is the grid coord at x direction
+    # gy is the grid coord at y direction
+    # gw is the with of the green rect
+    # gh is the height of the green rect
+    lx = origx + (gx-1)*w
+    ly = origy + (gy-1)*h
+    rx = origx + gx*w
+    ry = origy + gy*h
+    cx, cy = center(lx, ly, rx, ry)
+    # glx is the x coord of the left corner
+    # gly is the y coord of the left corner
+    glx = cx - gw/2
+    gly = cy - gh/2
+    # 利用設定的顏色值畫出 rectangle
+    ctx.fillStyle = color
+    ctx.fillRect(glx, gly, gw, gh)
+
+# 以白色覆蓋位於 (nowx, nowy) 
+# 且比目標方塊長寬各大於 1 pixel的方塊
+def wipe():
+    draw_rect(nowx, nowy, 30+1, 30+1, color="white")
+
+# 畫出位於 (nowx, nowy) 的綠色方塊
+def draw():
+    draw_rect(nowx, nowy, 30, 30, color="lime")
+
+# 更新後
+def walk():
+    global stepx, stepy
+# x軸向右為正，y軸向下為正
+# 當綠色方塊位於(1.1)時，x方向增量值為1，即向右移動
+    if nowy ==1 and nowx == 1:
+        stepx = 1
+        stepy = 0
+# 當綠色方塊走到(8.1)時，y方向增量值為1，即向下移動
+    elif nowx == 8 and nowy == 1:
+        stepx = 0
+        stepy = 1
+# 當綠色方塊走到(8.15)時，x方向增量值為1，即向右移動
+    if nowx ==8 and nowy == 15:
+        stepx = 1
+        stepy = 0
+# 當綠色方塊走到(15.15)時，y方向增量值為-1，即向上移動
+    elif nowy == 15 and nowx == 15:
+        stepx = 0
+        stepy = -1
+# 當綠色方塊走到(15.8)時，x方向增量值為-1，即向左移動
+    if nowy == 8 and nowx == 15:
+        stepx = -1
+        stepy = 0
+# 當綠色方塊走到(1.8)時，y方向增量值為-1，即向上移動
+    elif nowx == 1 and nowy == 8:
+        stepx = 0
+        stepy = -1
+# 每隔短暫時間即呼叫執行一次的函式
+def game():
+    # 因 nowx 與 nowy 在函式外宣告
+    # 且在函式內改變對應值, 因此需宣告為 global
+    global nowx, nowy
+    walk()
+    wipe()
+    nowx += stepx
+    nowy += stepy
+    draw()
+
+# 綠色方塊起點座標與 x 及 y 方向的座標增量
+nowx = 1
+nowy = 1
+stepx = 0
+stepy = 0
+# 設定格數
+# width 方向格子數
+wnum = 15
+# height 方向格子數
+hnum = 15
+# 設定線寬
+pixel = 1
+# 設定 w 寬度
+w = int(canvas.width/wnum) - pixel
+# 設定 h 高度
+h = int(canvas.height/hnum) - pixel
+# 設定繪圖座標點起點位置
+origx = 1
+origy = 1
+# 利用 grid 函式畫出格線
+grid(origx, origy, w, h, wnum, hnum, pixel=1, color="black")
+browser.timer.set_interval(game, 100)</pre>
 <p></p><br />w17 << <a href='w17.html'>Previous</a> <a href='cp2022.html'>Next</a> >> cp2022</div>
         
     <!-- footer -->
