@@ -847,6 +847,7 @@ data = open(url).read()
 ns = {'__name__':'__main__'}
 exec(data, ns)</pre>
 <p>(6)<span>數列應用</span></p>
+<p><span>ex.6(老師原先數列應用的範例)</span></p>
 <p>以下程式顯示希望這門課能及格不用再重修人員名單</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 已知 cp2022 1a 修課學員學號, 可以輾轉從下列 url 取出
 url = "https://nfu.cycu.org/?semester=1111&amp;courseno=0747&amp;column=True"
@@ -860,6 +861,7 @@ data = data.split("\n")
 data = data[:-1]
 print(data)</pre>
 <p>(7)<span>字典應用</span></p>
+<p>ex.7</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">stud_1a_url = "https://mde.tw/studlist/2022fall/1a.txt"
 data = open(stud_1a_url).read()
 # 因為資料中的第一個欄位為學號, 而第二個欄位為 Github 帳號, 且各列資料以 \t 隔開, 因此讀取後先以各列的跳行符號分割, 將各學員的資料先放入數列後再逐一取出分割出學號與 Github 帳號對應值
@@ -878,6 +880,7 @@ for i in data[1:-1]:
 # 試著利用字典列出 40923118 的 Github 帳號
 print(num_github["40923118"])</pre>
 <p>(8)<span>Brython 的 Canvas 靜態繪圖</span></p>
+<p><span>ex.8</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 畫日本國旗(未依照比例)
 # 導入 doc
 from browser import document as doc
@@ -908,6 +911,7 @@ ctx.fillStyle='rgb(255, 0, 0)'
 ctx.fill()
 #參考老師過國旗的程式(我只有修改22-28)</pre>
 <p>(9)<span>Brython 的 Canvas 動態繪圖(w15作業)</span></p>
+<p><span>ex.9</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 這個程式用於 demo 綠色方塊沿著特定網格路徑行走
 # 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc
 from browser import document as doc
